@@ -83,6 +83,19 @@ const T = {
     rev_date_2:'il y a 2 mois · Google',
     rev_date_3:'il y a 1 mois · Google',
     rev_date_4:'il y a 3 semaines · Google',
+    foot_privacy:'Politique de confidentialité',
+    cookie_text:'Ce site utilise des cookies fonctionnels (réservation Cal.com, formulaire de contact) nécessaires à son bon fonctionnement. Aucun cookie publicitaire n\'est utilisé.',
+    cookie_accept:'Accepter', cookie_decline:'Refuser',
+    priv_title:'Politique de Confidentialité',
+    priv_intro:'Salon Reda s\'engage à protéger vos données personnelles. Cette politique explique comment nous collectons et utilisons vos informations.',
+    priv_collect_h:'Données collectées',
+    priv_collect_p:'Lors de la prise de rendez-vous ou de l\'envoi d\'un message, nous collectons : votre nom, votre numéro de téléphone et, le cas échéant, votre message. Ces données sont utilisées uniquement pour traiter votre réservation.',
+    priv_cookies_h:'Cookies',
+    priv_cookies_p:'Nous utilisons des cookies fonctionnels indispensables au bon fonctionnement du système de réservation (Cal.com) et du formulaire de contact (Formspree). Aucun cookie publicitaire ou de traçage n\'est utilisé.',
+    priv_rights_h:'Vos droits',
+    priv_rights_p:'Conformément à la loi 09-08, vous disposez d\'un droit d\'accès, de rectification et de suppression de vos données. Contactez-nous au 06 44 27 33 35.',
+    priv_contact_h:'Contact',
+    priv_contact_p:'Salon Reda — Rue Regraga, Bourgogne, Casablanca, Maroc.',
   },
 
   ar: {
@@ -161,6 +174,19 @@ const T = {
     rev_date_2:'منذ شهرين · Google',
     rev_date_3:'منذ شهر · Google',
     rev_date_4:'منذ 3 أسابيع · Google',
+    foot_privacy:'سياسة الخصوصية',
+    cookie_text:'يستخدم هذا الموقع ملفات تعريف الارتباط الوظيفية (حجز Cal.com، نموذج التواصل) الضرورية لعمله. لا يتم استخدام أي ملفات تعريف ارتباط إعلانية.',
+    cookie_accept:'قبول', cookie_decline:'رفض',
+    priv_title:'سياسة الخصوصية',
+    priv_intro:'يلتزم صالون ريدا بحماية بياناتك الشخصية.',
+    priv_collect_h:'البيانات المجمعة',
+    priv_collect_p:'عند حجز موعد أو إرسال رسالة، نجمع: اسمك ورقم هاتفك ورسالتك. تُستخدم هذه البيانات فقط لمعالجة حجزك.',
+    priv_cookies_h:'ملفات تعريف الارتباط',
+    priv_cookies_p:'نستخدم ملفات تعريف الارتباط الوظيفية اللازمة لنظام الحجز (Cal.com) ونموذج التواصل (Formspree). لا يتم استخدام ملفات تعريف ارتباط إعلانية.',
+    priv_rights_h:'حقوقك',
+    priv_rights_p:'يحق لك الوصول إلى بياناتك وتصحيحها وحذفها. تواصل معنا على 06 44 27 33 35.',
+    priv_contact_h:'التواصل',
+    priv_contact_p:'صالون ريدا — شارع الرقراقة، بورغون، الدار البيضاء، المغرب.',
   },
 
   en: {
@@ -239,6 +265,19 @@ const T = {
     rev_date_2:'2 months ago · Google',
     rev_date_3:'1 month ago · Google',
     rev_date_4:'3 weeks ago · Google',
+    foot_privacy:'Privacy Policy',
+    cookie_text:'This site uses functional cookies (Cal.com booking, contact form) necessary for its operation. No advertising cookies are used.',
+    cookie_accept:'Accept', cookie_decline:'Decline',
+    priv_title:'Privacy Policy',
+    priv_intro:'Salon Reda is committed to protecting your personal data.',
+    priv_collect_h:'Data collected',
+    priv_collect_p:'When booking an appointment or sending a message, we collect: your name, phone number and message. This data is used solely to process your booking.',
+    priv_cookies_h:'Cookies',
+    priv_cookies_p:'We use functional cookies essential for the booking system (Cal.com) and contact form (Formspree). No advertising or tracking cookies are used.',
+    priv_rights_h:'Your rights',
+    priv_rights_p:'You have the right to access, correct and delete your data. Contact us at 06 44 27 33 35.',
+    priv_contact_h:'Contact',
+    priv_contact_p:'Salon Reda — Rue Regraga, Bourgogne, Casablanca, Morocco.',
   }
 };
 
@@ -827,3 +866,77 @@ function closeBSO() {
     initNavCta();
   }
 })();
+
+// ──────────────────────────────────────────────
+// COOKIE CONSENT
+// ──────────────────────────────────────────────
+(function() {
+  var COOKIE_KEY = 'sr_cookie_consent';
+
+  function showBanner() {
+    var banner = document.getElementById('cookieBanner');
+    if (!banner) return;
+    banner.style.display = 'block';
+  }
+
+  function hideBanner() {
+    var banner = document.getElementById('cookieBanner');
+    if (!banner) return;
+    banner.style.animation = 'none';
+    banner.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+    banner.style.transform = 'translateY(100%)';
+    banner.style.opacity = '0';
+    setTimeout(function() { banner.style.display = 'none'; }, 320);
+  }
+
+  window.cookieAccept = function() {
+    try { localStorage.setItem(COOKIE_KEY, 'accepted'); } catch(e) {}
+    hideBanner();
+  };
+
+  window.cookieDecline = function() {
+    try { localStorage.setItem(COOKIE_KEY, 'declined'); } catch(e) {}
+    hideBanner();
+  };
+
+  function initCookieBanner() {
+    var stored;
+    try { stored = localStorage.getItem(COOKIE_KEY); } catch(e) {}
+    if (!stored) {
+      // Show banner after short delay so page loads first
+      setTimeout(showBanner, 1200);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCookieBanner);
+  } else {
+    initCookieBanner();
+  }
+})();
+
+// ──────────────────────────────────────────────
+// PRIVACY POLICY MODAL
+// ──────────────────────────────────────────────
+window.showPrivacyPolicy = function(e) {
+  if (e) e.preventDefault();
+  var modal = document.getElementById('privacyModal');
+  if (!modal) return;
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+};
+
+window.closePrivacyPolicy = function() {
+  var modal = document.getElementById('privacyModal');
+  if (!modal) return;
+  modal.style.display = 'none';
+  document.body.style.overflow = '';
+};
+
+// Close privacy modal on Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    var modal = document.getElementById('privacyModal');
+    if (modal && modal.style.display !== 'none') closePrivacyPolicy();
+  }
+});

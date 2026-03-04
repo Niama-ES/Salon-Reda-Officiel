@@ -1084,4 +1084,148 @@ html.ar .review-text { font-style:normal; }
 /* ── RTL ── */
 html.ar .bso-card { direction:rtl; }
 html.ar .bso-detail-row { flex-direction:row-reverse; }
+
+/* ════════════════════════════════════════════
+   COOKIE CONSENT BANNER
+   ════════════════════════════════════════════ */
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: #1a1610;
+  border-top: 1px solid var(--gold-border);
+  padding: 16px 24px;
+  box-shadow: 0 -8px 32px rgba(0,0,0,0.5);
+  animation: cookieSlideUp 0.4s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+@keyframes cookieSlideUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+.cookie-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.cookie-text {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  flex: 1;
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.cookie-actions {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.cookie-btn {
+  padding: 9px 20px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid var(--gold-border);
+  transition: all 0.2s;
+}
+.cookie-decline {
+  background: transparent;
+  color: var(--text-muted);
+}
+.cookie-decline:hover { color: var(--text); border-color: var(--text-muted); }
+.cookie-accept {
+  background: var(--gold);
+  color: #0a0a08;
+  border-color: var(--gold);
+}
+.cookie-accept:hover { opacity: 0.88; }
+
+/* ════════════════════════════════════════════
+   PRIVACY POLICY MODAL
+   ════════════════════════════════════════════ */
+.privacy-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.privacy-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+}
+.privacy-card {
+  position: relative;
+  z-index: 1;
+  background: var(--card);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--r-lg);
+  padding: 48px 40px 40px;
+  max-width: 580px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.7);
+}
+.privacy-card h2 {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.privacy-card h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 24px 0 8px;
+}
+.privacy-card p {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+.privacy-card a { color: var(--gold); }
+.privacy-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  transition: color 0.2s;
+}
+.privacy-close:hover { color: var(--text); }
+
+/* Footer privacy link */
+.footer-privacy-link {
+  color: var(--text-muted);
+  font-size: 12px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s;
+}
+.footer-privacy-link:hover { color: var(--gold); }
+
+/* RTL */
+html.ar .cookie-inner { direction: rtl; }
+html.ar .privacy-card { direction: rtl; }
+html.ar .privacy-close { right: auto; left: 16px; }
 html.ar .bso-salon-strip { flex-direction:row-reverse; }
