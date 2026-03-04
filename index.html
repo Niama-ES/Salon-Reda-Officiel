@@ -35,6 +35,7 @@
   <link rel="apple-touch-icon" href="favicon-32.png">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="gallery-lightbox.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
 
   <!-- Schema.org LocalBusiness structured data -->
   <script type="application/ld+json">
@@ -537,10 +538,7 @@
         </div>
         <div class="location-map-wrap reveal">
           <div class="map-frame">
-            <iframe title="Salon Reda — Rue Regraga, Bourgogne, Casablanca"
-              src="https://maps.google.com/maps?q=33.5920,-7.6390&z=16&output=embed"
-              width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
+            <div id="leafletMap" style="width:100%;height:100%;"></div>
             <div class="map-pin-overlay">
               <div class="map-pin-card">
                 <div class="map-pin-dot"></div>
@@ -978,5 +976,24 @@
 
   <script src="main.js"></script>
   <script src="gallery-lightbox.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script>
+    (function() {
+      var map = L.map('leafletMap', { zoomControl: true, scrollWheelZoom: false })
+        .setView([33.5920, -7.6390], 16);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      }).addTo(map);
+      var icon = L.divIcon({
+        className: '',
+        html: '<div style="width:14px;height:14px;border-radius:50%;background:#C9A96E;border:3px solid #fff;box-shadow:0 0 0 4px rgba(201,169,110,0.35);"></div>',
+        iconSize: [14, 14], iconAnchor: [7, 7]
+      });
+      L.marker([33.5920, -7.6390], { icon: icon }).addTo(map)
+        .bindPopup('<strong style="font-family:serif">Salon Reda</strong><br><span style="font-size:12px">Rue Regraga, Bourgogne</span>');
+      // Dark map style via CSS filter
+      document.getElementById('leafletMap').style.filter = 'invert(0.92) hue-rotate(180deg) brightness(0.82) saturate(0.7)';
+    })();
+  </script>
 </body>
 </html>
