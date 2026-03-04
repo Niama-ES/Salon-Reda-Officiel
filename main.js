@@ -1,6 +1,6 @@
 ﻿/* ══════════════════════════════════════════════
    SALON REDA — main.js
-   i18n (FR/AR/EN) + Nav + Reveal + Form
+   i18n (FR/AR/EN) + Nav + Reveal + Form + Cal.com
    ══════════════════════════════════════════════ */
 
 // ──────────────────────────────────────────────
@@ -42,13 +42,22 @@ const T = {
     loc_eyebrow:'Localisation',
     loc_title:'Nous <em>Trouver</em>',
     loc_sub:'Au cœur du quartier Bourgogne, facilement accessible depuis tout Casablanca.',
-    loc_directions:'Obtenir l\'itinéraire',
-    cont_eyebrow:'Contact',
+    loc_directions:"Obtenir l'itinéraire",
+    cont_eyebrow:'Réservation',
     cont_title:'Prenons <em>Rendez-Vous</em>',
-    cont_sub:'Contactez-nous via WhatsApp, téléphone ou remplissez le formulaire ci-dessous.',
+    cont_sub:'Sélectionnez votre service et réservez votre créneau en quelques secondes.',
+    cic_title:'Nous Trouver',
+    bcc_eyebrow:'Réservation en ligne',
+    bcc_title:'Choisissez votre service',
+    bcc_cta:'Réserver mon Rendez-Vous',
+    bcc_note:'Confirmation immédiate par email',
+    qc_prefer:'Préférez nous contacter directement ?',
+    qc_msg:'Envoyer un message',
     c_addr:'Adresse', c_phone:'Téléphone', c_hours:'Horaires',
     c_hours_val:'Lun – Sam : 9h – 20h<br>Dimanche : Sur RDV',
     wa_btn:'Discuter sur WhatsApp',
+    tab_book:'Réserver un créneau', tab_msg:'Envoyer un message',
+    cal_choose:'Choisissez votre créneau',
     f_name:'Nom Complet', f_name_ph:'Votre nom',
     f_phone:'Téléphone',  f_phone_ph:'06 XX XX XX XX',
     f_service:'Service Souhaité', f_select:'Choisir un service...',
@@ -59,6 +68,21 @@ const T = {
     foot_desc:'Votre salon de coiffure de luxe au cœur de Casablanca. Spécialiste Balayage & Ombré.',
     foot_nav:'Navigation', foot_serv:'Services', foot_contact:'Infos',
     foot_copy:'© 2025 Salon Reda. Tous droits réservés.',
+    bso_eyebrow:'Réservation confirmée',
+    bso_title:'Votre Rendez-Vous<br>est Réservé !',
+    bso_sub:'Un email de confirmation vous a été envoyé avec tous les détails de votre rendez-vous.',
+    bso_wa:'Nous contacter',
+    bso_close:'Fermer',
+    bso_date_lbl:'Date', bso_time_lbl:'Heure', bso_serv_lbl:'Service',
+    nav_reviews:'Avis',
+    rev_eyebrow:'Témoignages',
+    rev_title:'Ce que disent <em>nos clients</em>',
+    rev_count:'105 avis Google',
+    rev_see_all:'Voir tous les avis',
+    rev_date_1:'il y a 4 mois · Google',
+    rev_date_2:'il y a 2 mois · Google',
+    rev_date_3:'il y a 1 mois · Google',
+    rev_date_4:'il y a 3 semaines · Google',
   },
 
   ar: {
@@ -97,12 +121,21 @@ const T = {
     loc_title:'<em>جدنا</em>',
     loc_sub:'في قلب حي بورغون، يسهل الوصول إلينا من جميع أنحاء الدار البيضاء.',
     loc_directions:'الحصول على الاتجاهات',
-    cont_eyebrow:'التواصل',
+    cont_eyebrow:'الحجز',
     cont_title:'لنحجز <em>موعدك</em>',
-    cont_sub:'تواصل معنا عبر واتساب أو الهاتف أو أكمل النموذج أدناه.',
+    cont_sub:'اختر خدمتك واحجز موعدك في ثوانٍ.',
+    cic_title:'أين نجدنا',
+    bcc_eyebrow:'الحجز الإلكتروني',
+    bcc_title:'اختر خدمتك',
+    bcc_cta:'احجز موعدي',
+    bcc_note:'تأكيد فوري عبر البريد الإلكتروني',
+    qc_prefer:'تفضل التواصل المباشر معنا؟',
+    qc_msg:'إرسال رسالة',
     c_addr:'العنوان', c_phone:'الهاتف', c_hours:'أوقات العمل',
     c_hours_val:'الإثنين – السبت: 9ص – 8م<br>الأحد: بموعد مسبق',
     wa_btn:'تحدث معنا على واتساب',
+    tab_book:'احجز موعداً', tab_msg:'أرسل رسالة',
+    cal_choose:'اختر وقتك',
     f_name:'الاسم الكامل', f_name_ph:'اسمك الكريم',
     f_phone:'الهاتف',      f_phone_ph:'06 XX XX XX XX',
     f_service:'الخدمة المطلوبة', f_select:'اختر خدمة...',
@@ -113,6 +146,21 @@ const T = {
     foot_desc:'صالون حلاقة فاخر في قلب الدار البيضاء. متخصصون في البالياج والأومبري.',
     foot_nav:'التنقل', foot_serv:'الخدمات', foot_contact:'معلومات',
     foot_copy:'© 2025 صالون ريدا. جميع الحقوق محفوظة.',
+    bso_eyebrow:'تم تأكيد الحجز',
+    bso_title:'تم حجز موعدك<br>بنجاح !',
+    bso_sub:'تم إرسال بريد إلكتروني بتفاصيل موعدك.',
+    bso_wa:'تواصل معنا',
+    bso_close:'إغلاق',
+    bso_date_lbl:'التاريخ', bso_time_lbl:'الوقت', bso_serv_lbl:'الخدمة',
+    nav_reviews:'التقييمات',
+    rev_eyebrow:'آراء عملائنا',
+    rev_title:'ما يقوله <em>عملاؤنا</em>',
+    rev_count:'105 تقييم على Google',
+    rev_see_all:'عرض جميع التقييمات',
+    rev_date_1:'منذ 4 أشهر · Google',
+    rev_date_2:'منذ شهرين · Google',
+    rev_date_3:'منذ شهر · Google',
+    rev_date_4:'منذ 3 أسابيع · Google',
   },
 
   en: {
@@ -151,12 +199,21 @@ const T = {
     loc_title:'Find <em>Us</em>',
     loc_sub:'In the heart of the Bourgogne district, easily accessible from all of Casablanca.',
     loc_directions:'Get Directions',
-    cont_eyebrow:'Contact',
+    cont_eyebrow:'Booking',
     cont_title:"Let's Book <em>Your Appointment</em>",
-    cont_sub:'Contact us via WhatsApp, phone, or fill out the form below.',
+    cont_sub:'Select your service and book your slot in seconds.',
+    cic_title:'Find Us',
+    bcc_eyebrow:'Online Booking',
+    bcc_title:'Choose your service',
+    bcc_cta:'Book my Appointment',
+    bcc_note:'Instant email confirmation',
+    qc_prefer:'Prefer to contact us directly?',
+    qc_msg:'Send a message',
     c_addr:'Address', c_phone:'Phone', c_hours:'Hours',
     c_hours_val:'Mon – Sat: 9am – 8pm<br>Sunday: By appointment',
     wa_btn:'Chat on WhatsApp',
+    tab_book:'Book a slot', tab_msg:'Send a message',
+    cal_choose:'Choose your slot',
     f_name:'Full Name', f_name_ph:'Your name',
     f_phone:'Phone',    f_phone_ph:'+212 6XX XX XX XX',
     f_service:'Desired Service', f_select:'Choose a service...',
@@ -167,6 +224,21 @@ const T = {
     foot_desc:'Your luxury hair salon in the heart of Casablanca. Balayage & Ombré specialists.',
     foot_nav:'Navigation', foot_serv:'Services', foot_contact:'Info',
     foot_copy:'© 2025 Salon Reda. All rights reserved.',
+    bso_eyebrow:'Booking Confirmed',
+    bso_title:'Your Appointment<br>is Booked !',
+    bso_sub:'A confirmation email has been sent to you with all the details of your appointment.',
+    bso_wa:'Contact us',
+    bso_close:'Close',
+    bso_date_lbl:'Date', bso_time_lbl:'Time', bso_serv_lbl:'Service',
+    nav_reviews:'Reviews',
+    rev_eyebrow:'Testimonials',
+    rev_title:'What our <em>clients say</em>',
+    rev_count:'105 Google reviews',
+    rev_see_all:'See all reviews',
+    rev_date_1:'4 months ago · Google',
+    rev_date_2:'2 months ago · Google',
+    rev_date_3:'1 month ago · Google',
+    rev_date_4:'3 weeks ago · Google',
   }
 };
 
@@ -180,7 +252,6 @@ function applyLang(lang) {
   if (!t) return;
   currentLang = lang;
 
-  // RTL toggle
   const html = document.documentElement;
   html.lang = lang;
   if (lang === 'ar') {
@@ -191,11 +262,9 @@ function applyLang(lang) {
     html.classList.remove('ar');
   }
 
-  // Translate all data-i18n elements
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (t[key] === undefined) return;
-    // Preserve inner HTML for keys with <em> tags
     if (t[key].includes('<')) {
       el.innerHTML = t[key];
     } else if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
@@ -203,24 +272,20 @@ function applyLang(lang) {
     } else if (el.tagName === 'OPTION') {
       el.textContent = t[key];
     } else {
-      // Handle \n as <br> in hero_desc and c_hours_val
       el.innerHTML = t[key].replace(/\n/g, '<br>');
     }
   });
 
-  // Translate placeholders
   document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
     const key = el.getAttribute('data-i18n-placeholder');
     if (t[key]) el.placeholder = t[key];
   });
 
-  // Update active lang button
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.lang === lang);
   });
 }
 
-// Lang switcher click
 document.querySelectorAll('.lang-btn').forEach(btn => {
   btn.addEventListener('click', () => applyLang(btn.dataset.lang));
 });
@@ -231,8 +296,6 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
 const nav = document.getElementById('nav');
 function onScroll() {
   nav.classList.toggle('scrolled', window.scrollY > 40);
-
-  // Active nav link highlight
   let current = '';
   document.querySelectorAll('section[id]').forEach(sec => {
     if (window.scrollY >= sec.offsetTop - 100) current = sec.id;
@@ -246,8 +309,8 @@ window.addEventListener('scroll', onScroll, { passive: true });
 // ──────────────────────────────────────────────
 // MOBILE BURGER
 // ──────────────────────────────────────────────
-const burger    = document.getElementById('burger');
-const navLinks  = document.getElementById('navLinks');
+const burger   = document.getElementById('burger');
+const navLinks = document.getElementById('navLinks');
 
 burger.addEventListener('click', () => {
   const open = navLinks.classList.toggle('open');
@@ -262,12 +325,11 @@ navLinks.querySelectorAll('.nav-link').forEach(link => {
 });
 
 // ──────────────────────────────────────────────
-// SCROLL REVEAL (Intersection Observer)
+// SCROLL REVEAL
 // ──────────────────────────────────────────────
 const revealObs = new IntersectionObserver((entries) => {
   entries.forEach((entry, idx) => {
     if (entry.isIntersecting) {
-      // Small stagger per element group
       const delay = (idx % 6) * 60;
       setTimeout(() => entry.target.classList.add('visible'), delay);
       revealObs.unobserve(entry.target);
@@ -275,7 +337,6 @@ const revealObs = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
 
-// Observe all .reveal elements outside hero (hero uses CSS animation)
 document.querySelectorAll('.reveal').forEach(el => {
   if (!el.closest('.hero')) revealObs.observe(el);
 });
@@ -296,15 +357,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 });
 
 // ──────────────────────────────────────────────
-// CONTACT FORM — Formspree email
+// CONTACT FORM — Formspree
 // ──────────────────────────────────────────────
-
-// Formspree is configured for niimafolla@gmail.com
-// ⚠️  One-time setup needed:
-//    1. Go to https://formspree.io → Sign up with niimafolla@gmail.com
-//    2. Click "New Form" → name it "Salon Reda"
-//    3. Copy the form ID from your dashboard (e.g. xpwzgkla)
-//    4. Replace YOUR_FORM_ID below with that ID
 const FORMSPREE_ID = 'xdalqaqg';
 
 async function handleSubmit(e) {
@@ -332,12 +386,7 @@ async function handleSubmit(e) {
     const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
       method: 'POST',
       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name:    name,
-        phone:   phone,
-        service: service,
-        message: message
-      })
+      body: JSON.stringify({ name, phone, service, message })
     });
     const data = await res.json();
     emailOk = res.ok && !data.errors;
@@ -359,7 +408,7 @@ async function handleSubmit(e) {
 }
 
 // ──────────────────────────────────────────────
-// GALLERY — subtle parallax on mouse move
+// GALLERY — parallax on mouse move
 // ──────────────────────────────────────────────
 document.querySelectorAll('.gallery-item').forEach(item => {
   item.addEventListener('mousemove', (e) => {
@@ -385,32 +434,29 @@ onScroll();
 // SHOWCASE SLIDER — Cinematic Auto-Play
 // ──────────────────────────────────────────────
 (function() {
-  const slides    = document.querySelectorAll('.showcase-slide');
-  const dots      = document.querySelectorAll('.showcase-dot');
-  const thumbs    = document.querySelectorAll('.strip-thumb');
-  const progress  = document.getElementById('showcaseProgress');
-  const prevBtn   = document.getElementById('showcasePrev');
-  const nextBtn   = document.getElementById('showcaseNext');
+  const slides   = document.querySelectorAll('.showcase-slide');
+  const dots     = document.querySelectorAll('.showcase-dot');
+  const thumbs   = document.querySelectorAll('.strip-thumb');
+  const progress = document.getElementById('showcaseProgress');
+  const prevBtn  = document.getElementById('showcasePrev');
+  const nextBtn  = document.getElementById('showcaseNext');
 
   if (!slides.length) return;
 
-  const DURATION  = 5200; // ms per slide
-  let current     = 0;
-  let timer       = null;
-  let progTimer   = null;
-  let progVal     = 0;
+  const DURATION = 5200;
+  let current    = 0;
+  let timer      = null;
+  let progTimer  = null;
+  let progVal    = 0;
 
   function goTo(idx) {
     slides[current].classList.remove('active');
     dots[current].classList.remove('active');
     thumbs[current].classList.remove('active');
-
     current = (idx + slides.length) % slides.length;
-
     slides[current].classList.add('active');
     dots[current].classList.add('active');
     thumbs[current].classList.add('active');
-
     resetProgress();
   }
 
@@ -435,28 +481,18 @@ onScroll();
     clearInterval(progTimer);
   }
 
-  // Dot & thumb click
-  dots.forEach(dot => dot.addEventListener('click', () => {
-    goTo(parseInt(dot.dataset.idx));
-    startAuto();
-  }));
-  thumbs.forEach(t => t.addEventListener('click', () => {
-    goTo(parseInt(t.dataset.idx));
-    startAuto();
-  }));
+  dots.forEach(dot => dot.addEventListener('click', () => { goTo(parseInt(dot.dataset.idx)); startAuto(); }));
+  thumbs.forEach(t => t.addEventListener('click', () => { goTo(parseInt(t.dataset.idx)); startAuto(); }));
 
-  // Arrow buttons
   if (prevBtn) prevBtn.addEventListener('click', () => { goTo(current - 1); startAuto(); });
   if (nextBtn) nextBtn.addEventListener('click', () => { goTo(current + 1); startAuto(); });
 
-  // Pause on hover
   const stage = document.querySelector('.showcase-stage');
   if (stage) {
     stage.addEventListener('mouseenter', pause);
     stage.addEventListener('mouseleave', () => { resetProgress(); startAuto(); });
   }
 
-  // Touch/swipe support
   let touchX = 0;
   if (stage) {
     stage.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive:true });
@@ -466,13 +502,328 @@ onScroll();
     }, { passive:true });
   }
 
-  // Keyboard
   document.addEventListener('keydown', e => {
     if (e.key === 'ArrowLeft')  { goTo(current-1); startAuto(); }
     if (e.key === 'ArrowRight') { goTo(current+1); startAuto(); }
   });
 
-  // Init
   goTo(0);
   startAuto();
+})();
+
+// ──────────────────────────────────────────────
+// SERVICE CHIP SELECTION
+// ──────────────────────────────────────────────
+(function () {
+  function initServiceChips() {
+    var chips = document.querySelectorAll('.serv-chip');
+    var label = document.getElementById('calServiceLabel');
+    var step1 = document.getElementById('bstep1');
+    var step2 = document.getElementById('bstep2');
+
+    if (!chips.length) return;
+
+    chips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        chips.forEach(function (c) { c.classList.remove('active'); });
+        chip.classList.add('active');
+
+        // Update frame header label (service name, no emoji)
+        if (label) {
+          var nameEl = chip.querySelector('[data-i18n]');
+          label.textContent = nameEl ? nameEl.textContent.trim() : (chip.dataset.serv || '');
+        }
+
+        // Update step indicator: step 1 done, step 2 active
+        if (step1) { step1.classList.remove('active'); step1.classList.add('done'); }
+        if (step2) { step2.classList.remove('done');   step2.classList.add('active'); }
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initServiceChips);
+  } else {
+    initServiceChips();
+  }
+})();
+
+// ──────────────────────────────────────────────
+// CONTACT FORM TOGGLE
+// ──────────────────────────────────────────────
+function toggleContactForm(btn) {
+  var wrap = document.getElementById('rdv-message');
+  if (!wrap) return;
+  var isOpen = wrap.style.display !== 'none' && wrap.style.display !== '';
+  wrap.style.display = isOpen ? 'none' : 'block';
+  // Update the text span inside the button (keep SVG icon)
+  if (btn) {
+    var span = btn.querySelector('span[data-i18n]') || btn.querySelector('span');
+    if (span) {
+      span.textContent = isOpen ? 'Envoyer un message' : 'Fermer le formulaire';
+    }
+    btn.classList.toggle('active', !isOpen);
+  }
+  if (!isOpen) {
+    setTimeout(function () { wrap.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
+  }
+}
+
+// ──────────────────────────────────────────────
+// RDV TAB SWITCHER (legacy compat, hidden tabs)
+// ──────────────────────────────────────────────
+(function () {
+  function initTabs() {
+    var tabs = document.querySelectorAll('.rdv-tab');
+    var panels = document.querySelectorAll('.rdv-panel');
+    if (!tabs.length) return;
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        tabs.forEach(function (t) { t.classList.remove('active'); });
+        panels.forEach(function (p) { p.classList.remove('active'); p.style.display = 'none'; });
+        tab.classList.add('active');
+        var target = document.getElementById('rdv-' + tab.dataset.rdvTab);
+        if (target) { target.classList.add('active'); target.style.display = 'block'; }
+      });
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTabs);
+  } else {
+    initTabs();
+  }
+})();
+
+// ──────────────────────────────────────────────
+// CAL.COM POPUP INIT
+// ──────────────────────────────────────────────
+(function () {
+  function initCal() {
+    if (typeof Cal === 'undefined') {
+      setTimeout(initCal, 400);
+      return;
+    }
+    // Popup mode: Cal.com auto-wires buttons with data-cal-link attribute
+    Cal("init", "reservation-salon-reda", { origin: "https://cal.com" });
+    Cal.ns["reservation-salon-reda"]("ui", {
+      theme: "dark",
+      styles: { branding: { brandColor: "#C9A96E" } },
+      cssVarsPerTheme: {
+        dark: {
+          "cal-bg":             "#0e0e0e",
+          "cal-bg-emphasis":    "#181818",
+          "cal-bg-subtle":      "#141414",
+          "cal-border":         "rgba(201,169,110,0.15)",
+          "cal-border-emphasis":"rgba(201,169,110,0.30)",
+          "cal-text":           "#F0EDE8",
+          "cal-text-emphasis":  "#F0EDE8",
+          "cal-text-muted":     "#8A8178",
+          "cal-brand":          "#C9A96E",
+          "cal-brand-emphasis": "#d4b87e",
+          "cal-brand-text":     "#080808"
+        }
+      },
+      hideEventTypeDetails: true,
+      layout: "month_view"
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCal);
+  } else {
+    initCal();
+  }
+})();
+
+// ──────────────────────────────────────────────
+// BOOKING SUCCESS OVERLAY
+// ──────────────────────────────────────────────
+function showBSO(bookingData) {
+  var overlay = document.getElementById('bsOverlay');
+  if (!overlay) return;
+
+  // Re-run i18n on the overlay card
+  var t = T[currentLang] || T.fr;
+  overlay.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    if (t[key] === undefined) return;
+    if (t[key].includes('<')) { el.innerHTML = t[key]; }
+    else { el.textContent = t[key]; }
+  });
+
+  // Build booking details block
+  var detailsEl = document.getElementById('bsoDetails');
+  if (detailsEl) {
+    detailsEl.innerHTML = '';
+    var startTime = bookingData && (bookingData.startTime || (bookingData.booking && bookingData.booking.startTime));
+    var title = bookingData && (bookingData.title || (bookingData.booking && bookingData.booking.title));
+
+    var rows = '';
+
+    // Date & Time row
+    if (startTime) {
+      var dt = new Date(startTime);
+      var dateFmt = dt.toLocaleDateString(
+        currentLang === 'ar' ? 'ar-MA' : (currentLang === 'en' ? 'en-GB' : 'fr-FR'),
+        { weekday:'long', day:'numeric', month:'long', year:'numeric' }
+      );
+      var timeFmt = dt.toLocaleTimeString(
+        currentLang === 'ar' ? 'ar-MA' : (currentLang === 'en' ? 'en-GB' : 'fr-FR'),
+        { hour:'2-digit', minute:'2-digit' }
+      );
+      var calIcon = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>';
+      var clockIcon = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>';
+      rows +=
+        '<div class="bso-detail-row">' +
+          '<div class="bso-detail-icon">' + calIcon + '</div>' +
+          '<div><div class="bso-detail-label">' + (t.bso_date_lbl || 'Date') + '</div>' +
+               '<div class="bso-detail-val">' + dateFmt + '</div></div>' +
+        '</div>' +
+        '<div class="bso-detail-row">' +
+          '<div class="bso-detail-icon">' + clockIcon + '</div>' +
+          '<div><div class="bso-detail-label">' + (t.bso_time_lbl || 'Heure') + '</div>' +
+               '<div class="bso-detail-val">' + timeFmt + '</div></div>' +
+        '</div>';
+    }
+
+    // Service row (from selected chip or title)
+    var activeChip = document.querySelector('.serv-chip.active [data-i18n]');
+    var serviceName = (activeChip && activeChip.textContent.trim()) || title || '';
+    if (serviceName) {
+      var scissIcon = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>';
+      rows +=
+        '<div class="bso-detail-row">' +
+          '<div class="bso-detail-icon">' + scissIcon + '</div>' +
+          '<div><div class="bso-detail-label">' + (t.bso_serv_lbl || 'Service') + '</div>' +
+               '<div class="bso-detail-val">' + serviceName + '</div></div>' +
+        '</div>';
+    }
+
+    if (rows) { detailsEl.innerHTML = rows; }
+  }
+
+  // Show
+  overlay.style.display = 'flex';
+  overlay.setAttribute('aria-hidden', 'false');
+  requestAnimationFrame(function() {
+    requestAnimationFrame(function() { overlay.classList.add('bso-visible'); });
+  });
+  document.body.style.overflow = 'hidden';
+}
+
+function closeBSO() {
+  var overlay = document.getElementById('bsOverlay');
+  if (!overlay) return;
+  overlay.classList.remove('bso-visible');
+  overlay.setAttribute('aria-hidden', 'true');
+  setTimeout(function() {
+    overlay.style.display = 'none';
+    document.body.style.overflow = '';
+  }, 420);
+}
+
+// Hook Cal.com bookingSuccessful event
+(function () {
+  var bsoShown = false; // guard: only show once per booking
+
+  function triggerBSO(data) {
+    if (bsoShown) return;
+    bsoShown = true;
+    // Show our custom overlay immediately
+    showBSO(data || {});
+    // Close Cal.com popup in background (user never sees it close)
+    setTimeout(function() {
+      try {
+        document.dispatchEvent(new KeyboardEvent('keydown', {
+          key: 'Escape', keyCode: 27, bubbles: true, cancelable: true
+        }));
+      } catch(e) {}
+      try {
+        var btn = document.querySelector(
+          '[data-testid="close-button"], button[aria-label="Close"], ' +
+          'button[aria-label="close"], .cal-embed [aria-label*="lose"]'
+        );
+        if (btn) btn.click();
+      } catch(e) {}
+    }, 80);
+    // Reset guard after overlay is dismissed so next booking works
+    setTimeout(function() { bsoShown = false; }, 5000);
+  }
+
+  // ── Method 1: window.postMessage (main channel for popup embeds) ──
+  window.addEventListener('message', function(e) {
+    try {
+      var msg = e.data;
+      if (typeof msg === 'string') { try { msg = JSON.parse(msg); } catch(_) { return; } }
+      if (!msg) return;
+      // Cal.com sends: { action:"bookingSuccessful", ... } or nested in .data
+      var action = msg.action || (msg.data && msg.data.action) || msg.type || '';
+      if (/bookingSuccessful/i.test(action)) {
+        triggerBSO(msg.data || msg);
+      }
+    } catch(e) {}
+  });
+
+  // ── Method 2: Cal namespace .on() (works for inline embeds) ──
+  function hookCalNamespace() {
+    if (typeof Cal === 'undefined') { setTimeout(hookCalNamespace, 600); return; }
+    var ns = Cal.ns && Cal.ns['reservation-salon-reda'];
+    if (!ns) { setTimeout(hookCalNamespace, 600); return; }
+    ['bookingSuccessful', 'bookingSuccessfulV2'].forEach(function(evtName) {
+      try {
+        ns('on', {
+          action: evtName,
+          callback: function(e) {
+            var data = (e && e.detail && (e.detail.data || e.detail)) || {};
+            triggerBSO(data);
+          }
+        });
+      } catch(e) {}
+    });
+    // Also try on global Cal
+    try {
+      ['bookingSuccessful', 'bookingSuccessfulV2'].forEach(function(evtName) {
+        Cal('on', { action: evtName, callback: function(e) {
+          var data = (e && e.detail && (e.detail.data || e.detail)) || {};
+          triggerBSO(data);
+        }});
+      });
+    } catch(e) {}
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', hookCalNamespace);
+  } else {
+    hookCalNamespace();
+  }
+})();
+
+// ──────────────────────────────────────────────
+// NAV "RÉSERVER" → scroll to #contact + open calendar tab
+// ──────────────────────────────────────────────
+(function () {
+  function initNavCta() {
+    const cta = document.querySelector('.nav-cta');
+    if (!cta) return;
+    cta.addEventListener('click', function () {
+      setTimeout(function () {
+        const calTab   = document.querySelector('.rdv-tab[data-rdv-tab="calendar"]');
+        const calPanel = document.getElementById('rdv-calendar');
+        const msgTab   = document.querySelector('.rdv-tab[data-rdv-tab="message"]');
+        const msgPanel = document.getElementById('rdv-message');
+        if (calTab && calPanel) {
+          if (msgTab)   msgTab.classList.remove('active');
+          if (msgPanel) msgPanel.classList.remove('active');
+          calTab.classList.add('active');
+          calPanel.classList.add('active');
+        }
+      }, 600);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNavCta);
+  } else {
+    initNavCta();
+  }
 })();

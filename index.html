@@ -12,6 +12,34 @@
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="apple-touch-icon" href="favicon-32.png">
   <link rel="stylesheet" href="style.css">
+
+  <!-- Cal.com embed loader -->
+  <script type="text/javascript">
+    (function (C, A, L) {
+      let p = function (a, ar) { a.q.push(ar); };
+      let d = C.document;
+      C.Cal = C.Cal || function () {
+        let cal = C.Cal; let ar = arguments;
+        if (!cal.loaded) {
+          cal.ns = {}; cal.q = cal.q || [];
+          d.head.appendChild(d.createElement("script")).src = A;
+          cal.loaded = true;
+        }
+        if (ar[0] === L) {
+          const api = function () { p(api, arguments); };
+          const namespace = ar[1];
+          api.q = api.q || [];
+          if (typeof namespace === "string") {
+            cal.ns[namespace] = cal.ns[namespace] || api;
+            p(cal.ns[namespace], ar);
+            p(cal, [L, namespace, ar[2]]);
+          } else p(cal, ar);
+          return;
+        }
+        p(cal, ar);
+      };
+    })(window, "https://app.cal.com/embed/embed.js", "init");
+  </script>
 </head>
 <body>
 
@@ -32,6 +60,7 @@
         <a class="nav-link" href="#gallery" data-i18n="nav_gallery">Galerie</a>
         <a class="nav-link" href="#about" data-i18n="nav_about">À Propos</a>
         <a class="nav-link" href="#location" data-i18n="nav_location">Localisation</a>
+        <a class="nav-link" href="#reviews" data-i18n="nav_reviews">Avis</a>
         <a class="nav-link" href="#contact" data-i18n="nav_contact">Contact</a>
       </div>
       <div class="nav-right">
@@ -42,7 +71,8 @@
           <span class="lang-sep">|</span>
           <button class="lang-btn" data-lang="en">EN</button>
         </div>
-        <a href="https://wa.me/212644273335" target="_blank" class="nav-cta" data-i18n="nav_cta">Réserver</a>
+        <!-- Gold "Réserver" button → scrolls to #contact and opens calendar tab -->
+        <a href="#contact" class="nav-cta book-trigger" data-i18n="nav_cta">Réserver</a>
         <button class="nav-burger" id="burger" aria-label="Menu">
           <span></span><span></span><span></span>
         </button>
@@ -75,7 +105,6 @@
 
     <div class="showcase-stage">
       <div class="showcase-slides" id="showcaseSlides">
-
         <div class="showcase-slide active">
           <div class="slide-img-wrap">
             <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1400&q=90&auto=format&fit=crop" alt="Coloration">
@@ -88,7 +117,6 @@
           </div>
           <div class="slide-num">01</div>
         </div>
-
         <div class="showcase-slide">
           <div class="slide-img-wrap">
             <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1400&q=90&auto=format&fit=crop" alt="Balayage">
@@ -101,7 +129,6 @@
           </div>
           <div class="slide-num">02</div>
         </div>
-
         <div class="showcase-slide">
           <div class="slide-img-wrap">
             <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=1400&q=90&auto=format&fit=crop" alt="Brushing">
@@ -114,7 +141,6 @@
           </div>
           <div class="slide-num">03</div>
         </div>
-
         <div class="showcase-slide">
           <div class="slide-img-wrap">
             <img src="https://images.unsplash.com/photo-1519735777090-ec97162dc266?w=1400&q=90&auto=format&fit=crop" alt="Ombré">
@@ -127,7 +153,6 @@
           </div>
           <div class="slide-num">04</div>
         </div>
-
         <div class="showcase-slide">
           <div class="slide-img-wrap">
             <img src="https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?w=1400&q=90&auto=format&fit=crop" alt="Soin">
@@ -140,7 +165,6 @@
           </div>
           <div class="slide-num">05</div>
         </div>
-
       </div>
 
       <button class="showcase-arrow showcase-prev" id="showcasePrev" aria-label="Précédent">
@@ -160,24 +184,12 @@
 
       <div class="showcase-progress"><div class="showcase-progress-bar" id="showcaseProgress"></div></div>
 
-
-
       <div class="showcase-strip" id="showcaseStrip">
-        <div class="strip-thumb active" data-idx="0">
-          <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=200&q=70&auto=format&fit=crop" alt="">
-        </div>
-        <div class="strip-thumb" data-idx="1">
-          <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=200&q=70&auto=format&fit=crop" alt="">
-        </div>
-        <div class="strip-thumb" data-idx="2">
-          <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=200&q=70&auto=format&fit=crop" alt="">
-        </div>
-        <div class="strip-thumb" data-idx="3">
-          <img src="https://images.unsplash.com/photo-1519735777090-ec97162dc266?w=200&q=70&auto=format&fit=crop" alt="">
-        </div>
-        <div class="strip-thumb" data-idx="4">
-          <img src="https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?w=200&q=70&auto=format&fit=crop" alt="">
-        </div>
+        <div class="strip-thumb active" data-idx="0"><img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=200&q=70&auto=format&fit=crop" alt=""></div>
+        <div class="strip-thumb" data-idx="1"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=200&q=70&auto=format&fit=crop" alt=""></div>
+        <div class="strip-thumb" data-idx="2"><img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=200&q=70&auto=format&fit=crop" alt=""></div>
+        <div class="strip-thumb" data-idx="3"><img src="https://images.unsplash.com/photo-1519735777090-ec97162dc266?w=200&q=70&auto=format&fit=crop" alt=""></div>
+        <div class="strip-thumb" data-idx="4"><img src="https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?w=200&q=70&auto=format&fit=crop" alt=""></div>
       </div>
     </div>
 
@@ -218,8 +230,9 @@
       </div>
       <p class="hero-desc reveal" data-i18n="hero_desc">Spécialiste Balayage, Ombré &amp; Coloration à Casablanca.<br>Une expérience capillaire d'exception, taillée sur mesure pour vous.</p>
       <div class="hero-cta-group reveal">
-        <a href="https://wa.me/212644273335" target="_blank" class="btn btn-primary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <!-- Book button → #contact calendar tab -->
+        <a href="#contact" class="btn btn-primary book-trigger">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
           <span data-i18n="hero_cta1">Prendre RDV</span>
         </a>
         <a href="#gallery" class="btn btn-ghost" data-i18n="hero_cta2">Voir Notre Travail</a>
@@ -256,128 +269,79 @@
         <p class="section-sub" data-i18n="serv_sub">Des prestations haut de gamme adaptées à chaque type de cheveu et chaque style de vie.</p>
       </div>
       <div class="services-grid">
-
-        <!-- Scissors icon -->
         <div class="service-card reveal">
           <div class="service-number">01</div>
           <div class="service-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/>
-              <line x1="20" y1="4" x2="8.12" y2="15.88"/>
-              <line x1="14.47" y1="14.48" x2="20" y2="20"/>
-              <line x1="8.12" y1="8.12" x2="12" y2="12"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
           </div>
           <h3 class="service-name" data-i18n="s1_name">Coupe &amp; Brushing</h3>
           <p class="service-desc" data-i18n="s1_desc">Coupe personnalisée selon votre morphologie et vos envies, brushing inclus.</p>
           <div class="service-price"><span data-i18n="from">Dès</span> <strong>150 MAD</strong></div>
         </div>
-
-        <!-- Color palette icon -->
         <div class="service-card reveal">
           <div class="service-number">02</div>
           <div class="service-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8z"/>
-              <circle cx="6.5" cy="11.5" r="1.5" fill="currentColor" stroke="none"/>
-              <circle cx="9.5" cy="7.5" r="1.5" fill="currentColor" stroke="none"/>
-              <circle cx="14.5" cy="7.5" r="1.5" fill="currentColor" stroke="none"/>
-              <circle cx="17.5" cy="11.5" r="1.5" fill="currentColor" stroke="none"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8z"/><circle cx="6.5" cy="11.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="9.5" cy="7.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="14.5" cy="7.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="17.5" cy="11.5" r="1.5" fill="currentColor" stroke="none"/></svg>
           </div>
           <h3 class="service-name" data-i18n="s2_name">Coloration</h3>
           <p class="service-desc" data-i18n="s2_desc">Coloration complète, racines ou mèches avec des produits premium haute protection.</p>
           <div class="service-price"><span data-i18n="from">Dès</span> <strong>250 MAD</strong></div>
         </div>
-
-        <!-- Sparkle/wand icon -->
         <div class="service-card reveal featured">
           <div class="service-badge" data-i18n="badge_pop">Populaire</div>
           <div class="service-number">03</div>
           <div class="service-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M15 4V2M15 16v-2M8 9h2M20 9h2M17.8 11.8L19 13M17.8 6.2L19 5M12.2 11.8L11 13M12.2 6.2L11 5"/>
-              <path d="M15 9a3 3 0 1 1 0 0.01"/>
-              <path d="M3 21l9-9"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4V2M15 16v-2M8 9h2M20 9h2M17.8 11.8L19 13M17.8 6.2L19 5M12.2 11.8L11 13M12.2 6.2L11 5"/><path d="M15 9a3 3 0 1 1 0 0.01"/><path d="M3 21l9-9"/></svg>
           </div>
           <h3 class="service-name" data-i18n="s3_name">Balayage &amp; Ombré</h3>
           <p class="service-desc" data-i18n="s3_desc">Notre signature — un effet naturel et lumineux qui sublime chaque nuance de vos cheveux.</p>
           <div class="service-price"><span data-i18n="from">Dès</span> <strong>400 MAD</strong></div>
         </div>
-
-        <!-- Droplets / treatment icon -->
         <div class="service-card reveal">
           <div class="service-number">04</div>
           <div class="service-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
-              <path d="M12 12v4M10 14h4"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/><path d="M12 12v4M10 14h4"/></svg>
           </div>
           <h3 class="service-name" data-i18n="s4_name">Lissage Kératine</h3>
           <p class="service-desc" data-i18n="s4_desc">Lissage durable qui discipline et nourrit vos cheveux en profondeur jusqu'à 6 mois.</p>
           <div class="service-price"><span data-i18n="from">Dès</span> <strong>500 MAD</strong></div>
         </div>
-
-        <!-- Extensions / links icon -->
         <div class="service-card reveal">
           <div class="service-number">05</div>
           <div class="service-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
-              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
           </div>
           <h3 class="service-name" data-i18n="s5_name">Extensions</h3>
           <p class="service-desc" data-i18n="s5_desc">Extensions naturelles posées à la kératine ou à la tape pour plus de volume et de longueur.</p>
           <div class="service-price"><span data-i18n="from">Dès</span> <strong>600 MAD</strong></div>
         </div>
-
-        <!-- Crown / bridal icon -->
         <div class="service-card reveal">
           <div class="service-number">06</div>
           <div class="service-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M2 20h20M4 20l2-8 5 4 1-8 1 8 5-4 2 8"/>
-              <circle cx="12" cy="4" r="2"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20M4 20l2-8 5 4 1-8 1 8 5-4 2 8"/><circle cx="12" cy="4" r="2"/></svg>
           </div>
           <h3 class="service-name" data-i18n="s6_name">Coiffure Mariée</h3>
           <p class="service-desc" data-i18n="s6_desc">Mise en beauté complète pour votre grand jour : chignon, coiffure berbère, maquillage.</p>
           <div class="service-price" data-i18n="on_quote">Sur devis</div>
         </div>
-
-        <!-- Leaf / care icon -->
         <div class="service-card reveal">
           <div class="service-number">07</div>
           <div class="service-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M17 8C8 10 5.9 16.17 3.82 19.85a.5.5 0 0 0 .7.65C8.13 17.5 13.37 17 17 8z"/>
-              <path d="M17 8C17 3 12 2 12 2s0 5 5 6"/>
-              <path d="M9 19c.64-1.44 1.5-2.75 3-3.5"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8C8 10 5.9 16.17 3.82 19.85a.5.5 0 0 0 .7.65C8.13 17.5 13.37 17 17 8z"/><path d="M17 8C17 3 12 2 12 2s0 5 5 6"/><path d="M9 19c.64-1.44 1.5-2.75 3-3.5"/></svg>
           </div>
           <h3 class="service-name" data-i18n="s7_name">Soin Capillaire</h3>
           <p class="service-desc" data-i18n="s7_desc">Soins restructurants, masques nourrissants et traitements anti-chute personnalisés.</p>
           <div class="service-price"><span data-i18n="from">Dès</span> <strong>100 MAD</strong></div>
         </div>
-
-        <!-- Refresh/makeover icon -->
         <div class="service-card reveal">
           <div class="service-number">08</div>
           <div class="service-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M23 4v6h-6"/>
-              <path d="M1 20v-6h6"/>
-              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
           </div>
           <h3 class="service-name" data-i18n="s8_name">Relooking Complet</h3>
           <p class="service-desc" data-i18n="s8_desc">Changement de look total : conseil personnalisé, coupe, coloration et coiffage.</p>
           <div class="service-price" data-i18n="on_quote">Sur devis</div>
         </div>
-
       </div>
     </div>
   </section>
@@ -445,33 +409,14 @@
           <p class="about-p" data-i18n="about_p1">Salon Reda est votre adresse de référence pour la coiffure de luxe à Casablanca. Spécialiste en techniques de coloration avancées — Balayage, Ombré, Teinture — notre équipe passionnée transforme chaque visite en expérience unique.</p>
           <p class="about-p" data-i18n="about_p2">Situé au cœur du quartier Bourgogne, rue Regraga, le salon accueille chaque client dans un cadre élégant avec des produits professionnels des plus grandes maisons.</p>
           <div class="about-features">
-            <div class="about-feat">
-              <div class="about-feat-icon">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
-              <span data-i18n="feat1">Produits professionnels haut de gamme</span>
-            </div>
-            <div class="about-feat">
-              <div class="about-feat-icon">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
-              <span data-i18n="feat2">Techniques exclusives de coloration</span>
-            </div>
-            <div class="about-feat">
-              <div class="about-feat-icon">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
-              <span data-i18n="feat3">Conseil personnalisé gratuit</span>
-            </div>
-            <div class="about-feat">
-              <div class="about-feat-icon">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
-              <span data-i18n="feat4">Équipe formée aux dernières tendances</span>
-            </div>
+            <div class="about-feat"><div class="about-feat-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><span data-i18n="feat1">Produits professionnels haut de gamme</span></div>
+            <div class="about-feat"><div class="about-feat-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><span data-i18n="feat2">Techniques exclusives de coloration</span></div>
+            <div class="about-feat"><div class="about-feat-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><span data-i18n="feat3">Conseil personnalisé gratuit</span></div>
+            <div class="about-feat"><div class="about-feat-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><span data-i18n="feat4">Équipe formée aux dernières tendances</span></div>
           </div>
-          <a href="https://wa.me/212644273335" target="_blank" class="btn btn-primary" style="margin-top:32px;display:inline-flex;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <!-- About CTA → also triggers calendar tab -->
+          <a href="#contact" class="btn btn-primary book-trigger" style="margin-top:32px;display:inline-flex;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             <span data-i18n="about_cta">Prendre Rendez-Vous</span>
           </a>
         </div>
@@ -488,59 +433,38 @@
         <p class="section-sub" data-i18n="loc_sub">Au cœur du quartier Bourgogne, facilement accessible depuis tout Casablanca.</p>
       </div>
       <div class="location-grid">
-        <!-- Info cards -->
         <div class="location-info reveal">
           <div class="loc-card">
-            <div class="loc-card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/>
-              </svg>
-            </div>
+            <div class="loc-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
             <div class="loc-card-body">
               <div class="loc-card-label" data-i18n="c_addr">Adresse</div>
               <div class="loc-card-value">Rue Regraga, Bourgogne<br>Casablanca, Maroc</div>
             </div>
           </div>
           <div class="loc-card">
-            <div class="loc-card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/>
-                <polyline points="12 6 12 12 16 14"/>
-              </svg>
-            </div>
+            <div class="loc-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
             <div class="loc-card-body">
               <div class="loc-card-label" data-i18n="c_hours">Horaires</div>
               <div class="loc-card-value" data-i18n="c_hours_val">Lun – Sam : 9h – 20h<br>Dimanche : Sur RDV</div>
             </div>
           </div>
           <div class="loc-card">
-            <div class="loc-card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
-              </svg>
-            </div>
+            <div class="loc-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg></div>
             <div class="loc-card-body">
               <div class="loc-card-label" data-i18n="c_phone">Téléphone</div>
               <a href="tel:+212644273335" class="loc-card-value loc-card-link">06 44 27 33 35</a>
             </div>
           </div>
           <a href="https://www.google.com/maps/dir/?api=1&destination=Rue+Regraga+Bourgogne+Casablanca+Maroc" target="_blank" class="btn btn-primary loc-directions-btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="3 11 22 2 13 21 11 13 3 11"/>
-            </svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
             <span data-i18n="loc_directions">Obtenir l'itinéraire</span>
           </a>
         </div>
-
-        <!-- Embedded map -->
         <div class="location-map-wrap reveal">
           <div class="map-frame">
-            <iframe
-              title="Salon Reda — Rue Regraga, Bourgogne, Casablanca"
+            <iframe title="Salon Reda — Rue Regraga, Bourgogne, Casablanca"
               src="https://www.openstreetmap.org/export/embed.html?bbox=-7.6490%2C33.5870%2C-7.6290%2C33.5970&layer=mapnik&marker=33.5920%2C-7.6390"
-              width="100%" height="100%"
-              style="border:0;" allowfullscreen loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade">
+              width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
             </iframe>
             <div class="map-pin-overlay">
               <div class="map-pin-card">
@@ -557,106 +481,280 @@
     </div>
   </section>
 
-  <!-- ═══════════ CONTACT ═══════════ -->
+  <!-- ═══════════ GOOGLE REVIEWS ═══════════ -->
+  <section class="section section-alt" id="reviews">
+    <div class="container">
+
+      <div class="section-header reveal">
+        <div class="section-eyebrow" data-i18n="rev_eyebrow">Témoignages</div>
+        <h2 class="section-title" data-i18n="rev_title">Ce que disent <em>nos clients</em></h2>
+      </div>
+
+      <!-- Google rating badge -->
+      <div class="google-badge reveal">
+        <div class="gbadge-logo">
+          <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34A21.991 21.991 0 0 0 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
+        </div>
+        <div class="gbadge-score">4,6</div>
+        <div class="gbadge-stars">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBC05"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBC05"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBC05"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBC05"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBC05" opacity="0.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div class="gbadge-count" data-i18n="rev_count">105 avis Google</div>
+        <div class="gbadge-sep"></div>
+        <a href="https://www.google.com/maps/search/Salon+Reda+Officiel+Casablanca+Regraga" target="_blank" class="gbadge-link" data-i18n="rev_see_all">Voir tous les avis</a>
+      </div>
+
+      <!-- Review cards -->
+      <div class="reviews-grid">
+
+        <div class="review-card reveal">
+          <div class="review-header">
+            <div class="review-avatar">A</div>
+            <div class="review-author-info">
+              <div class="review-author">Ajghid Loubna</div>
+              <div class="review-stars">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBC05"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBC05"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBC05"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBC05"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBC05"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+            </div>
+            <div class="review-google-icon"><svg width="16" height="16" viewBox="0 0 48 48"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34A21.991 21.991 0 0 0 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg></div>
+          </div>
+          <p class="review-text">"Une expérience au top du top ! Reda est super professionnel et passionné par son travail... on sent qu'il maîtrise parfaitement ce qu'il fait."</p>
+          <div class="review-meta" data-i18n="rev_date_1">il y a 4 mois · Google</div>
+        </div>
+
+        <div class="review-card reveal">
+          <div class="review-header">
+            <div class="review-avatar" style="background:linear-gradient(135deg,#C9A96E,#8B6914)">S</div>
+            <div class="review-author-info">
+              <div class="review-author">Sarah M.</div>
+              <div class="review-stars">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBC05"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBC05"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBC05"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBC05"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBC05"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+            </div>
+            <div class="review-google-icon"><svg width="16" height="16" viewBox="0 0 48 48"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34A21.991 21.991 0 0 0 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg></div>
+          </div>
+          <p class="review-text">"Balayage sublime, exactement ce que je voulais. Reda a vraiment l'œil pour les couleurs. Le salon est élégant et l'accueil est chaleureux. Je recommande vivement !"</p>
+          <div class="review-meta" data-i18n="rev_date_2">il y a 2 mois · Google</div>
+        </div>
+
+        <div class="review-card reveal">
+          <div class="review-header">
+            <div class="review-avatar" style="background:linear-gradient(135deg,#7B5EA7,#4A3580)">I</div>
+            <div class="review-author-info">
+              <div class="review-author">Imane B.</div>
+              <div class="review-stars">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBC05"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBC05"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBC05"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBC05"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBC05"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+            </div>
+            <div class="review-google-icon"><svg width="16" height="16" viewBox="0 0 48 48"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34A21.991 21.991 0 0 0 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg></div>
+          </div>
+          <p class="review-text">"Mon ombré est absolument magnifique. Reda est un vrai artiste, très professionnel et à l'écoute de ce qu'on veut. Le résultat dépasse mes attentes !"</p>
+          <div class="review-meta" data-i18n="rev_date_3">il y a 1 mois · Google</div>
+        </div>
+
+        <div class="review-card reveal">
+          <div class="review-header">
+            <div class="review-avatar" style="background:linear-gradient(135deg,#2196F3,#0D47A1)">F</div>
+            <div class="review-author-info">
+              <div class="review-author">Fatima Z.</div>
+              <div class="review-stars">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBC05"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBC05"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBC05"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBC05"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBC05"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+            </div>
+            <div class="review-google-icon"><svg width="16" height="16" viewBox="0 0 48 48"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34A21.991 21.991 0 0 0 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg></div>
+          </div>
+          <p class="review-text">"Je reviens régulièrement depuis 2 ans, le salon est propre, l'ambiance est agréable et Reda est toujours au top. Vraiment le meilleur salon de Bourgogne."</p>
+          <div class="review-meta" data-i18n="rev_date_4">il y a 3 semaines · Google</div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════ CONTACT + BOOKING ═══════════ -->
   <section class="section" id="contact">
     <div class="container">
+
       <div class="section-header reveal">
-        <div class="section-eyebrow" data-i18n="cont_eyebrow">Contact</div>
+        <div class="section-eyebrow" data-i18n="cont_eyebrow">Réservation</div>
         <h2 class="section-title" data-i18n="cont_title">Prenons <em>Rendez-Vous</em></h2>
-        <p class="section-sub" data-i18n="cont_sub">Contactez-nous via WhatsApp, téléphone ou remplissez le formulaire ci-dessous.</p>
+        <p class="section-sub" data-i18n="cont_sub">Sélectionnez votre service et réservez votre créneau en quelques secondes.</p>
       </div>
-      <div class="contact-grid">
-        <div class="contact-info reveal">
-          <div class="contact-block">
-            <div class="contact-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/>
-              </svg>
+
+      <!-- Two-column layout: Contact info | Booking CTA -->
+      <div class="contact-booking-grid">
+
+        <!-- LEFT: Contact info card -->
+        <div class="contact-info-card reveal">
+          <div class="cic-title" data-i18n="cic_title">Nous Trouver</div>
+          <div class="cic-rows">
+            <div class="cic-row">
+              <div class="cic-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <div class="cic-label" data-i18n="c_addr">Adresse</div>
+                <div class="cic-value">Rue Regraga, Bourgogne<br>Casablanca, Maroc</div>
+              </div>
             </div>
-            <div>
-              <div class="contact-lbl" data-i18n="c_addr">Adresse</div>
-              <div class="contact-val">Rue Regraga, Bourgogne<br>Casablanca, Maroc</div>
+            <div class="cic-row">
+              <div class="cic-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div>
+                <div class="cic-label" data-i18n="c_hours">Horaires</div>
+                <div class="cic-value" data-i18n="c_hours_val">Lun – Sam : 9h – 20h<br>Dimanche : Sur RDV</div>
+              </div>
+            </div>
+            <div class="cic-row">
+              <div class="cic-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+              </div>
+              <div>
+                <div class="cic-label" data-i18n="c_phone">Téléphone</div>
+                <a href="tel:+212644273335" class="cic-value cic-link">06 44 27 33 35</a>
+              </div>
+            </div>
+            <div class="cic-row">
+              <div class="cic-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+              </div>
+              <div>
+                <div class="cic-label">Instagram</div>
+                <a href="https://www.instagram.com/salon_reda_officiel/" target="_blank" class="cic-value cic-link">@salon_reda_officiel</a>
+              </div>
             </div>
           </div>
-          <div class="contact-block">
-            <div class="contact-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
-              </svg>
-            </div>
-            <div>
-              <div class="contact-lbl" data-i18n="c_phone">Téléphone</div>
-              <a href="tel:+212644273335" class="contact-val contact-link">06 44 27 33 35</a>
-            </div>
-          </div>
-          <div class="contact-block">
-            <div class="contact-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/>
-                <polyline points="12 6 12 12 16 14"/>
-              </svg>
-            </div>
-            <div>
-              <div class="contact-lbl" data-i18n="c_hours">Horaires</div>
-              <div class="contact-val" data-i18n="c_hours_val">Lun – Sam : 9h – 20h<br>Dimanche : Sur RDV</div>
-            </div>
-          </div>
-          <div class="contact-block">
-            <div class="contact-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-            </div>
-            <div>
-              <div class="contact-lbl">Instagram</div>
-              <a href="https://www.instagram.com/salon_reda_officiel/" target="_blank" class="contact-val contact-link">@salon_reda_officiel</a>
-            </div>
-          </div>
-          <a href="https://wa.me/212644273335" target="_blank" class="whatsapp-btn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <!-- WhatsApp -->
+          <a href="https://wa.me/212644273335" target="_blank" class="cic-wa-btn">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             <span data-i18n="wa_btn">Discuter sur WhatsApp</span>
           </a>
-        </div>
-        <form class="contact-form reveal" id="contactForm" onsubmit="handleSubmit(event)">
-          <div class="form-row">
-            <div class="form-group">
-              <label data-i18n="f_name">Nom Complet</label>
-              <input type="text" placeholder="Votre nom" required data-i18n-placeholder="f_name_ph">
-            </div>
-            <div class="form-group">
-              <label data-i18n="f_phone">Téléphone</label>
-              <input type="tel" placeholder="06 XX XX XX XX" data-i18n-placeholder="f_phone_ph">
-            </div>
-          </div>
-          <div class="form-group">
-            <label data-i18n="f_service">Service Souhaité</label>
-            <select>
-              <option value="" data-i18n="f_select">Choisir un service...</option>
-              <option data-i18n="s1_name">Coupe &amp; Brushing</option>
-              <option data-i18n="s2_name">Coloration</option>
-              <option data-i18n="s3_name">Balayage &amp; Ombré</option>
-              <option data-i18n="s4_name">Lissage Kératine</option>
-              <option data-i18n="s5_name">Extensions</option>
-              <option data-i18n="s6_name">Coiffure Mariée</option>
-              <option data-i18n="s7_name">Soin Capillaire</option>
-              <option data-i18n="s8_name">Relooking Complet</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label data-i18n="f_msg">Message</label>
-            <textarea rows="4" placeholder="Votre message ou préférence horaire..." data-i18n-placeholder="f_msg_ph"></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary btn-full" id="submitBtn">
-            <span data-i18n="f_submit">Envoyer la Demande</span>
+          <!-- Message form toggle -->
+          <button class="cic-msg-toggle" id="toggleMsgBtn" onclick="toggleContactForm(this)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <span data-i18n="qc_msg">Envoyer un message</span>
           </button>
-          <div class="form-success" id="formSuccess">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            <span data-i18n="f_success">Message envoyé ! Nous vous contacterons très bientôt.</span>
+        </div>
+
+        <!-- RIGHT: Online booking card -->
+        <div class="booking-cta-card reveal">
+          <div class="bcc-eyebrow" data-i18n="bcc_eyebrow">Réservation en ligne</div>
+          <div class="bcc-title" data-i18n="bcc_title">Choisissez votre service</div>
+
+          <!-- Service chips -->
+          <div class="serv-chips bcc-chips" id="servChips">
+            <button class="serv-chip active" data-serv="Coupe &amp; Brushing">
+              <span class="serv-chip-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></span>
+              <span data-i18n="s1_name">Coupe &amp; Brushing</span>
+            </button>
+            <button class="serv-chip" data-serv="Coloration">
+              <span class="serv-chip-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></span>
+              <span data-i18n="s2_name">Coloration</span>
+            </button>
+            <button class="serv-chip" data-serv="Balayage &amp; Ombré">
+              <span class="serv-chip-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M18.37 2.63L14 7l-1.59-1.59a2 2 0 0 0-2.82 0L8 7l9 9 1.59-1.58a2 2 0 0 0 0-2.83L17 10l4.37-4.37a2.12 2.12 0 1 0-3-3z"/><path d="M9 8c-2 3-4 3.5-7 4l8 10c2-1 6-5 6-7"/></svg></span>
+              <span data-i18n="s3_name">Balayage &amp; Ombré</span>
+            </button>
+            <button class="serv-chip" data-serv="Lissage Kératine">
+              <span class="serv-chip-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></span>
+              <span data-i18n="s4_name">Lissage Kératine</span>
+            </button>
+            <button class="serv-chip" data-serv="Extensions">
+              <span class="serv-chip-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5z"/><path d="M19 2l.4 1.2 1.2.4-1.2.4L19 5l-.4-1.2L17.4 3.4l1.2-.4z"/><path d="M5 18l.4 1.2 1.2.4-1.2.4L5 21l-.4-1.2L3.4 19.4l1.2-.4z"/></svg></span>
+              <span data-i18n="s5_name">Extensions</span>
+            </button>
+            <button class="serv-chip" data-serv="Coiffure Mariée">
+              <span class="serv-chip-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 20h20M3 20l2.5-10 4.5 5L12 4l2 11 4.5-5L21 20"/></svg></span>
+              <span data-i18n="s6_name">Coiffure Mariée</span>
+            </button>
           </div>
-          <div class="form-error" id="formError">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-            <span data-i18n="f_error">Une erreur est survenue. Réessayez ou contactez-nous sur WhatsApp.</span>
+
+          <!-- Cal.com popup trigger button -->
+          <button class="booking-cta-btn"
+                  data-cal-link="niima-folla-d4kdft/reservation-salon-reda"
+                  data-cal-namespace="reservation-salon-reda"
+                  data-cal-config='{"layout":"month_view","theme":"dark"}'>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span data-i18n="bcc_cta">Réserver mon Rendez-Vous</span>
+          </button>
+
+          <div class="bcc-note">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span data-i18n="bcc_note">Confirmation immédiate par email</span>
           </div>
-        </form>
+        </div>
+
       </div>
+
+      <!-- Collapsible contact form -->
+      <div id="rdv-message" style="display:none; margin-top:40px;">
+        <div class="contact-form-solo">
+          <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label data-i18n="f_name">Nom Complet</label>
+                <input type="text" placeholder="Votre nom" required data-i18n-placeholder="f_name_ph">
+              </div>
+              <div class="form-group">
+                <label data-i18n="f_phone">Téléphone</label>
+                <input type="tel" placeholder="06 XX XX XX XX" data-i18n-placeholder="f_phone_ph">
+              </div>
+            </div>
+            <div class="form-group">
+              <label data-i18n="f_service">Service Souhaité</label>
+              <select id="formServiceSelect">
+                <option value="" data-i18n="f_select">Choisir un service...</option>
+                <option data-i18n="s1_name">Coupe &amp; Brushing</option>
+                <option data-i18n="s2_name">Coloration</option>
+                <option data-i18n="s3_name">Balayage &amp; Ombré</option>
+                <option data-i18n="s4_name">Lissage Kératine</option>
+                <option data-i18n="s5_name">Extensions</option>
+                <option data-i18n="s6_name">Coiffure Mariée</option>
+                <option data-i18n="s7_name">Soin Capillaire</option>
+                <option data-i18n="s8_name">Relooking Complet</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label data-i18n="f_msg">Message</label>
+              <textarea rows="4" placeholder="Votre message ou préférence horaire..." data-i18n-placeholder="f_msg_ph"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full" id="submitBtn">
+              <span data-i18n="f_submit">Envoyer la Demande</span>
+            </button>
+            <div class="form-success" id="formSuccess">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span data-i18n="f_success">Message envoyé ! Nous vous contacterons très bientôt.</span>
+            </div>
+            <div class="form-error" id="formError">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              <span data-i18n="f_error">Une erreur est survenue. Réessayez ou contactez-nous sur WhatsApp.</span>
+            </div>
+          </form>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -714,10 +812,54 @@
     </div>
   </footer>
 
-  <!-- WhatsApp Floating Button -->
   <a href="https://wa.me/212644273335" target="_blank" class="wa-float" aria-label="WhatsApp">
     <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
+
+  <!-- ══ BOOKING SUCCESS OVERLAY ══ -->
+  <div id="bsOverlay" class="bso-overlay" style="display:none;" aria-hidden="true">
+    <div class="bso-backdrop" onclick="closeBSO()"></div>
+    <div class="bso-card" role="dialog" aria-modal="true">
+      <button class="bso-close" onclick="closeBSO()" aria-label="Fermer">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+
+      <!-- Animated checkmark -->
+      <div class="bso-check-wrap">
+        <svg class="bso-check-svg" viewBox="0 0 52 52">
+          <circle class="bso-check-circle" cx="26" cy="26" r="24" fill="none"/>
+          <path class="bso-check-path" fill="none" d="M14 26.5l8 8 16-16"/>
+        </svg>
+      </div>
+
+      <div class="bso-eyebrow" data-i18n="bso_eyebrow">Réservation confirmée</div>
+      <h3 class="bso-title" data-i18n="bso_title">Votre Rendez-Vous<br>est Réservé !</h3>
+      <p class="bso-sub" data-i18n="bso_sub">Un email de confirmation vous a été envoyé avec tous les détails de votre rendez-vous.</p>
+
+      <!-- Dynamic booking details injected by JS -->
+      <div class="bso-details" id="bsoDetails"></div>
+
+      <!-- Salon strip -->
+      <div class="bso-salon-strip">
+        <div class="bso-salon-logo">Reda</div>
+        <div class="bso-salon-meta">
+          <div class="bso-salon-name">Salon Reda</div>
+          <div class="bso-salon-addr">Rue Regraga, Bourgogne · Casablanca</div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="bso-ctas">
+        <a href="https://wa.me/212644273335?text=Bonjour%2C+j%27ai+réservé+un+rendez-vous+en+ligne." target="_blank" class="bso-wa-btn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <span data-i18n="bso_wa">Nous contacter</span>
+        </a>
+        <button class="bso-close-btn" onclick="closeBSO()">
+          <span data-i18n="bso_close">Fermer</span>
+        </button>
+      </div>
+    </div>
+  </div>
 
   <script src="main.js"></script>
 </body>
