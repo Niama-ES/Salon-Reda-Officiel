@@ -7,7 +7,8 @@
   <title>Page introuvable — Salon Reda</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -15,112 +16,290 @@
       --gold: #c9a96e;
       --gold-border: rgba(201,169,110,0.25);
       --bg: #0a0a08;
-      --card: #111109;
       --text: #f0ebe0;
       --text-muted: #8a8070;
       --serif: 'Cormorant Garamond', Georgia, serif;
       --script: 'Great Vibes', cursive;
     }
+
     html, body {
       height: 100%;
       background: var(--bg);
       color: var(--text);
       font-family: 'Inter', sans-serif;
     }
-    body {
+
+    /* ─── FULL-PAGE LAYOUT ─── */
+    .page {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 520px 1fr;
+    }
+
+    /* ─── LEFT PANEL ─── */
+    .left {
+      position: relative;
+      z-index: 2;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      text-align: center;
-      padding: 40px 20px;
+      padding: 60px 56px;
+      background: linear-gradient(to right, #0a0a08 80%, transparent);
     }
-    .logo {
+
+    .logo-wrap { margin-bottom: 52px; }
+    .logo-script {
       font-family: var(--script);
-      font-size: 52px;
+      font-size: 50px;
       color: var(--gold);
-      margin-bottom: 8px;
       line-height: 1;
+      display: block;
     }
-    .logo-sub {
+    .logo-tagline {
       font-family: var(--serif);
-      font-size: 11px;
-      letter-spacing: 0.22em;
+      font-size: 10px;
+      letter-spacing: 0.25em;
       text-transform: uppercase;
       color: var(--text-muted);
-      margin-bottom: 56px;
+      margin-top: 2px;
     }
+
     .err-num {
       font-family: var(--serif);
-      font-size: clamp(80px, 18vw, 160px);
+      font-size: 160px;
       font-weight: 300;
-      line-height: 1;
+      line-height: 0.85;
       color: transparent;
-      -webkit-text-stroke: 1px var(--gold-border);
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
+      -webkit-text-stroke: 1px rgba(201,169,110,0.25);
+      letter-spacing: -0.04em;
+      margin-bottom: 20px;
+      user-select: none;
     }
-    .divider {
+
+    .gold-line {
       width: 48px;
-      height: 1px;
+      height: 1.5px;
       background: var(--gold);
-      margin: 0 auto 28px;
-      opacity: 0.5;
+      margin-bottom: 28px;
     }
+
     h1 {
       font-family: var(--serif);
-      font-size: clamp(22px, 4vw, 34px);
+      font-size: 38px;
       font-weight: 400;
+      line-height: 1.2;
       margin-bottom: 14px;
-      color: var(--text);
     }
-    p {
-      font-size: 15px;
+    h1 em { font-style: italic; color: var(--gold); }
+
+    .sub {
+      font-size: 14.5px;
       color: var(--text-muted);
+      line-height: 1.75;
       max-width: 360px;
-      line-height: 1.7;
       margin-bottom: 44px;
     }
-    .btn {
+
+    .cta-btn {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 14px 32px;
+      gap: 10px;
+      padding: 15px 36px;
       background: var(--gold);
       color: #0a0a08;
+      font-size: 11.5px;
       font-weight: 600;
-      font-size: 13px;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       text-decoration: none;
-      border-radius: 4px;
-      transition: opacity 0.2s;
+      border-radius: 3px;
+      transition: opacity .2s, transform .2s;
+      width: fit-content;
     }
-    .btn:hover { opacity: 0.88; }
-    .footer-note {
-      margin-top: 64px;
+    .cta-btn:hover { opacity: .88; transform: translateY(-2px); }
+
+    .quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 36px;
+    }
+    .quick-link {
       font-size: 12px;
       color: var(--text-muted);
-      opacity: 0.6;
+      text-decoration: none;
+      border: 1px solid var(--gold-border);
+      padding: 7px 16px;
+      border-radius: 20px;
+      transition: color .2s, border-color .2s;
+    }
+    .quick-link:hover { color: var(--gold); border-color: rgba(201,169,110,0.6); }
+
+    /* ─── RIGHT PANEL — PHOTO GRID ─── */
+    .right {
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* subtle gradient over the grid from left */
+    .right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(10,10,8,0.45) 0%, transparent 35%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .photo-grid {
+      display: grid;
+      width: 100%;
+      height: 100vh;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+      gap: 4px;
+    }
+
+    /* mosaic spanning */
+    .ph:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 2; }
+    .ph:nth-child(2) { grid-column: 3 / 4; grid-row: 1 / 3; }
+    .ph:nth-child(3) { grid-column: 1 / 2; grid-row: 2 / 4; }
+    .ph:nth-child(4) { grid-column: 2 / 3; grid-row: 2 / 3; }
+    .ph:nth-child(5) { grid-column: 2 / 4; grid-row: 3 / 4; }
+
+    .ph {
+      position: relative;
+      overflow: hidden;
+    }
+    .ph img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(.72) saturate(.85);
+      transition: transform .8s cubic-bezier(.25,1,.5,1), filter .5s;
+    }
+    .ph:hover img {
+      transform: scale(1.07);
+      filter: brightness(.88) saturate(1.1);
+    }
+
+    /* caption on hover */
+    .ph-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 20px 14px 14px;
+      background: linear-gradient(transparent, rgba(0,0,0,.7));
+      font-family: var(--serif);
+      font-size: 13px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(201,169,110,.9);
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity .35s, transform .35s;
+      pointer-events: none;
+    }
+    .ph:hover .ph-label { opacity: 1; transform: translateY(0); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1050px) {
+      .page { grid-template-columns: 440px 1fr; }
+      .left { padding: 48px 40px; }
+      .err-num { font-size: 130px; }
+    }
+
+    @media (max-width: 800px) {
+      .page { grid-template-columns: 1fr; grid-template-rows: auto 1fr; min-height: 100vh; }
+      .left {
+        background: var(--bg);
+        padding: 48px 28px 40px;
+        order: 2;
+      }
+      .right { order: 1; height: 54vw; min-height: 220px; }
+      .right::before { background: linear-gradient(to bottom, rgba(10,10,8,.4) 0%, transparent 40%); }
+      .photo-grid { height: 100%; }
+      .err-num { font-size: 100px; }
+      h1 { font-size: 30px; }
+    }
+
+    @media (max-width: 520px) {
+      .photo-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+      }
+      .ph:nth-child(1) { grid-column: 1/2; grid-row: 1/2; }
+      .ph:nth-child(2) { grid-column: 2/3; grid-row: 1/3; }
+      .ph:nth-child(3) { grid-column: 1/2; grid-row: 2/3; }
+      .ph:nth-child(4),
+      .ph:nth-child(5) { display: none; }
+      .right { height: 64vw; }
     }
   </style>
 </head>
 <body>
-  <div class="logo">Reda</div>
-  <div class="logo-sub">Hairstyling &amp; Beauty Professionals</div>
+  <div class="page">
 
-  <div class="err-num">404</div>
-  <div class="divider"></div>
+    <!-- ── LEFT ── -->
+    <div class="left">
+      <div class="logo-wrap">
+        <span class="logo-script">Reda</span>
+        <span class="logo-tagline">Hairstyling &amp; Beauty Professionals</span>
+      </div>
 
-  <h1>Page Introuvable</h1>
-  <p>La page que vous cherchez n'existe pas ou a été déplacée. Retournez à l'accueil pour découvrir nos services.</p>
+      <div class="err-num">404</div>
+      <div class="gold-line"></div>
 
-  <a href="/" class="btn">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-    Retour à l'accueil
-  </a>
+      <h1>Page <em>introuvable</em></h1>
+      <p class="sub">La page que vous cherchez n'existe pas ou a été déplacée. Retournez à l'accueil pour découvrir nos services et réserver votre prochain rendez-vous.</p>
 
-  <div class="footer-note">© 2025 Salon Reda · Casablanca, Maroc</div>
+      <a href="/" class="cta-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Retour à l'accueil
+      </a>
+
+      <nav class="quick-links" aria-label="Raccourcis">
+        <a href="/#services"  class="quick-link">Nos Services</a>
+        <a href="/#gallery"   class="quick-link">Galerie</a>
+        <a href="/#contact"   class="quick-link">Réserver</a>
+        <a href="https://wa.me/212644273335" class="quick-link" target="_blank" rel="noopener">WhatsApp</a>
+      </nav>
+    </div>
+
+    <!-- ── RIGHT — PHOTO GRID ── -->
+    <div class="right" aria-hidden="true">
+      <div class="photo-grid">
+
+        <div class="ph">
+          <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=900&q=85&auto=format&fit=crop&fm=webp" alt="Coloration" loading="lazy">
+          <div class="ph-label">Coloration</div>
+        </div>
+
+        <div class="ph">
+          <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=85&auto=format&fit=crop&fm=webp" alt="Balayage" loading="lazy">
+          <div class="ph-label">Balayage</div>
+        </div>
+
+        <div class="ph">
+          <img src="https://images.unsplash.com/photo-1519735777090-ec97162dc266?w=700&q=85&auto=format&fit=crop&fm=webp" alt="Ombré" loading="lazy">
+          <div class="ph-label">Ombré</div>
+        </div>
+
+        <div class="ph">
+          <img src="https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?w=600&q=85&auto=format&fit=crop&fm=webp" alt="Soin Capillaire" loading="lazy">
+          <div class="ph-label">Soin</div>
+        </div>
+
+        <div class="ph">
+          <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=900&q=85&auto=format&fit=crop&fm=webp" alt="Brushing" loading="lazy">
+          <div class="ph-label">Brushing</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
 </body>
 </html>

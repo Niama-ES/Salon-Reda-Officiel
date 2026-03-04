@@ -266,10 +266,23 @@
       const category = ITEM_MAP[label];
       if (!category) return;
 
+      // Make keyboard accessible
+      item.setAttribute('tabindex', '0');
+      item.setAttribute('role', 'button');
+      item.setAttribute('aria-label', 'Voir la galerie ' + label);
+
       // Add click handler
       item.addEventListener('click', function(e) {
         e.preventDefault();
         openLightbox(category, 0);
+      });
+
+      // Keyboard: Enter or Space opens lightbox
+      item.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openLightbox(category, 0);
+        }
       });
 
       // Add visual cue — small icon overlay

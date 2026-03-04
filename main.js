@@ -321,8 +321,18 @@ function applyLang(lang) {
   });
 
   document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.lang === lang);
+    const isActive = btn.dataset.lang === lang;
+    btn.classList.toggle('active', isActive);
+    btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
   });
+
+  // Announce language change to screen readers
+  var announce = document.getElementById('srLangAnnounce');
+  if (announce) {
+    var langNames = { fr: 'Français', ar: 'العربية', en: 'English' };
+    announce.textContent = langNames[lang] || lang;
+    setTimeout(function() { announce.textContent = ''; }, 2000);
+  }
 }
 
 document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -354,12 +364,16 @@ const navLinks = document.getElementById('navLinks');
 burger.addEventListener('click', () => {
   const open = navLinks.classList.toggle('open');
   burger.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  burger.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
 });
 
 navLinks.querySelectorAll('.nav-link').forEach(link => {
   link.addEventListener('click', () => {
     navLinks.classList.remove('open');
     burger.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    burger.setAttribute('aria-label', 'Ouvrir le menu');
   });
 });
 
@@ -408,10 +422,18 @@ async function handleSubmit(e) {
   const error   = document.getElementById('formError');
   const t       = T[currentLang];
 
-  const name    = form.querySelector('input[type="text"]').value.trim();
-  const phone   = form.querySelector('input[type="tel"]').value.trim();
+  // Honeypot: if bot filled the hidden field, silently reject
+  const honeypot = form.querySelector('#website');
+  if (honeypot && honeypot.value) {
+    if (success) success.classList.add('show'); // fake success so bot thinks it worked
+    form.reset();
+    return;
+  }
+
+  const name    = form.querySelector('#f_name_input')  ? form.querySelector('#f_name_input').value.trim()  : form.querySelector('input[type="text"]').value.trim();
+  const phone   = form.querySelector('#f_phone_input') ? form.querySelector('#f_phone_input').value.trim() : form.querySelector('input[type="tel"]').value.trim();
   const service = form.querySelector('select').value.trim();
-  const message = form.querySelector('textarea').value.trim();
+  const message = form.querySelector('#f_msg_input')   ? form.querySelector('#f_msg_input').value.trim()   : form.querySelector('textarea').value.trim();
 
   btn.disabled = true;
   btn.querySelector('span').textContent =

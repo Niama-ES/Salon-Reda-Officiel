@@ -13,7 +13,7 @@
   <meta property="og:url"         content="https://salonredaofficiel.netlify.app/">
   <meta property="og:title"       content="Salon Reda — Coiffure de Luxe · Casablanca">
   <meta property="og:description" content="Votre adresse coiffure de référence à Casablanca. Balayage, Ombré, Coloration &amp; Soin. Rue Regraga, Bourgogne.">
-  <meta property="og:image"       content="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1200&q=85&auto=format&fit=crop">
+  <meta property="og:image"       content="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1200&q=85&auto=format&fit=crop&fm=webp">
   <meta property="og:image:width"  content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale"      content="fr_MA">
@@ -22,7 +22,7 @@
   <meta name="twitter:card"        content="summary_large_image">
   <meta name="twitter:title"       content="Salon Reda — Coiffure de Luxe · Casablanca">
   <meta name="twitter:description" content="Votre adresse coiffure de référence à Casablanca. Balayage, Ombré, Coloration &amp; Soin.">
-  <meta name="twitter:image"       content="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1200&q=85&auto=format&fit=crop">
+  <meta name="twitter:image"       content="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1200&q=85&auto=format&fit=crop&fm=webp">
 
   <title>Salon Reda — Hairstyling &amp; Beauty Professionals · Casablanca</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,7 +46,7 @@
     "url": "https://salonredaofficiel.netlify.app/",
     "telephone": "+212644273335",
     "priceRange": "MAD 80–MAD 1200",
-    "image": "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1200&q=85&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1200&q=85&auto=format&fit=crop&fm=webp",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Rue Regraga",
@@ -113,11 +113,15 @@
   </script>
 </head>
 <body>
+  <!-- Skip to main content (accessibility) -->
+  <a href="#showcase" class="skip-link">Aller au contenu principal</a>
+  <!-- Screen-reader language announcement -->
+  <div id="srLangAnnounce" aria-live="polite" aria-atomic="true" class="sr-only"></div>
 
-  <!-- ═══════════ NAV ═══════════ -->
-  <nav class="nav" id="nav">
+  <!-- ----------- NAV ----------- -->
+  <nav class="nav" id="nav" role="navigation" aria-label="Navigation principale">
     <div class="nav-inner">
-      <a class="nav-logo" href="#showcase">
+      <a class="nav-logo" href="#showcase" aria-label="Salon Reda — Accueil">
         <img src="logo.png" alt="Salon Reda" class="nav-logo-img"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="logo-mark" style="display:none">
@@ -125,7 +129,7 @@
           <span class="logo-sub">HAIRSTYLING &amp; BEAUTY PROFESSIONALS</span>
         </div>
       </a>
-      <div class="nav-links" id="navLinks">
+      <div class="nav-links" id="navLinks" role="list">
         <a class="nav-link" href="#showcase" data-i18n="nav_home">Accueil</a>
         <a class="nav-link" href="#services" data-i18n="nav_services">Services</a>
         <a class="nav-link" href="#gallery" data-i18n="nav_gallery">Galerie</a>
@@ -135,42 +139,42 @@
         <a class="nav-link" href="#contact" data-i18n="nav_contact">Contact</a>
       </div>
       <div class="nav-right">
-        <div class="lang-switcher">
-          <button class="lang-btn active" data-lang="fr">FR</button>
+        <div class="lang-switcher" role="group" aria-label="Langue">
+          <button class="lang-btn active" data-lang="fr" aria-pressed="true" aria-label="Francais">FR</button>
           <span class="lang-sep">|</span>
-          <button class="lang-btn" data-lang="ar">AR</button>
+          <button class="lang-btn" data-lang="ar" aria-pressed="false" aria-label="Arabe">AR</button>
           <span class="lang-sep">|</span>
-          <button class="lang-btn" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="en" aria-pressed="false" aria-label="English">EN</button>
         </div>
-        <!-- Gold "Réserver" button → scrolls to #contact and opens calendar tab -->
+        <!-- Gold "Réserver" button ? scrolls to #contact and opens calendar tab -->
         <a href="#contact" class="nav-cta book-trigger" data-i18n="nav_cta">Réserver</a>
-        <button class="nav-burger" id="burger" aria-label="Menu">
-          <span></span><span></span><span></span>
+        <button class="nav-burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navLinks">
+          <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
         </button>
       </div>
     </div>
   </nav>
 
-  <!-- ═══════════ SHOWCASE SLIDER ═══════════ -->
+  <!-- ----------- SHOWCASE SLIDER ----------- -->
   <section class="showcase" id="showcase">
     <div class="showcase-ticker">
       <div class="ticker-track">
-        <span>Balayage</span><span class="ticker-dot">✦</span>
-        <span>Ombré</span><span class="ticker-dot">✦</span>
-        <span>Coloration</span><span class="ticker-dot">✦</span>
-        <span>Lissage Kératine</span><span class="ticker-dot">✦</span>
-        <span>Extensions</span><span class="ticker-dot">✦</span>
-        <span>Coiffure Mariée</span><span class="ticker-dot">✦</span>
-        <span>Soin Capillaire</span><span class="ticker-dot">✦</span>
-        <span>Relooking</span><span class="ticker-dot">✦</span>
-        <span>Balayage</span><span class="ticker-dot">✦</span>
-        <span>Ombré</span><span class="ticker-dot">✦</span>
-        <span>Coloration</span><span class="ticker-dot">✦</span>
-        <span>Lissage Kératine</span><span class="ticker-dot">✦</span>
-        <span>Extensions</span><span class="ticker-dot">✦</span>
-        <span>Coiffure Mariée</span><span class="ticker-dot">✦</span>
-        <span>Soin Capillaire</span><span class="ticker-dot">✦</span>
-        <span>Relooking</span><span class="ticker-dot">✦</span>
+        <span>Balayage</span><span class="ticker-dot">?</span>
+        <span>Ombré</span><span class="ticker-dot">?</span>
+        <span>Coloration</span><span class="ticker-dot">?</span>
+        <span>Lissage Kératine</span><span class="ticker-dot">?</span>
+        <span>Extensions</span><span class="ticker-dot">?</span>
+        <span>Coiffure Mariée</span><span class="ticker-dot">?</span>
+        <span>Soin Capillaire</span><span class="ticker-dot">?</span>
+        <span>Relooking</span><span class="ticker-dot">?</span>
+        <span>Balayage</span><span class="ticker-dot">?</span>
+        <span>Ombré</span><span class="ticker-dot">?</span>
+        <span>Coloration</span><span class="ticker-dot">?</span>
+        <span>Lissage Kératine</span><span class="ticker-dot">?</span>
+        <span>Extensions</span><span class="ticker-dot">?</span>
+        <span>Coiffure Mariée</span><span class="ticker-dot">?</span>
+        <span>Soin Capillaire</span><span class="ticker-dot">?</span>
+        <span>Relooking</span><span class="ticker-dot">?</span>
       </div>
     </div>
 
@@ -178,7 +182,7 @@
       <div class="showcase-slides" id="showcaseSlides">
         <div class="showcase-slide active">
           <div class="slide-img-wrap">
-            <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1400&q=90&auto=format&fit=crop" alt="Coloration">
+            <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1400&q=90&auto=format&fit=crop&fm=webp" alt="Coloration">
             <div class="slide-veil"></div>
           </div>
           <div class="slide-caption">
@@ -190,7 +194,7 @@
         </div>
         <div class="showcase-slide">
           <div class="slide-img-wrap">
-            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1400&q=90&auto=format&fit=crop" alt="Balayage" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1400&q=90&auto=format&fit=crop&fm=webp" alt="Balayage" loading="lazy">
             <div class="slide-veil"></div>
           </div>
           <div class="slide-caption">
@@ -202,7 +206,7 @@
         </div>
         <div class="showcase-slide">
           <div class="slide-img-wrap">
-            <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=1400&q=90&auto=format&fit=crop" alt="Brushing" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=1400&q=90&auto=format&fit=crop&fm=webp" alt="Brushing" loading="lazy">
             <div class="slide-veil"></div>
           </div>
           <div class="slide-caption">
@@ -214,7 +218,7 @@
         </div>
         <div class="showcase-slide">
           <div class="slide-img-wrap">
-            <img src="https://images.unsplash.com/photo-1519735777090-ec97162dc266?w=1400&q=90&auto=format&fit=crop" alt="Ombré" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1519735777090-ec97162dc266?w=1400&q=90&auto=format&fit=crop&fm=webp" alt="Ombré" loading="lazy">
             <div class="slide-veil"></div>
           </div>
           <div class="slide-caption">
@@ -226,7 +230,7 @@
         </div>
         <div class="showcase-slide">
           <div class="slide-img-wrap">
-            <img src="https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?w=1400&q=90&auto=format&fit=crop" alt="Soin" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?w=1400&q=90&auto=format&fit=crop&fm=webp" alt="Soin" loading="lazy">
             <div class="slide-veil"></div>
           </div>
           <div class="slide-caption">
@@ -256,35 +260,35 @@
       <div class="showcase-progress"><div class="showcase-progress-bar" id="showcaseProgress"></div></div>
 
       <div class="showcase-strip" id="showcaseStrip">
-        <div class="strip-thumb active" data-idx="0"><img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=200&q=70&auto=format&fit=crop" alt=""></div>
-        <div class="strip-thumb" data-idx="1"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=200&q=70&auto=format&fit=crop" alt=""></div>
-        <div class="strip-thumb" data-idx="2"><img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=200&q=70&auto=format&fit=crop" alt=""></div>
-        <div class="strip-thumb" data-idx="3"><img src="https://images.unsplash.com/photo-1519735777090-ec97162dc266?w=200&q=70&auto=format&fit=crop" alt=""></div>
-        <div class="strip-thumb" data-idx="4"><img src="https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?w=200&q=70&auto=format&fit=crop" alt=""></div>
+        <div class="strip-thumb active" data-idx="0"><img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=200&q=70&auto=format&fit=crop&fm=webp" alt=""></div>
+        <div class="strip-thumb" data-idx="1"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=200&q=70&auto=format&fit=crop&fm=webp" alt=""></div>
+        <div class="strip-thumb" data-idx="2"><img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=200&q=70&auto=format&fit=crop&fm=webp" alt=""></div>
+        <div class="strip-thumb" data-idx="3"><img src="https://images.unsplash.com/photo-1519735777090-ec97162dc266?w=200&q=70&auto=format&fit=crop&fm=webp" alt=""></div>
+        <div class="strip-thumb" data-idx="4"><img src="https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?w=200&q=70&auto=format&fit=crop&fm=webp" alt=""></div>
       </div>
     </div>
 
     <div class="showcase-ticker showcase-ticker-b">
       <div class="ticker-track ticker-reverse">
-        <span>Casablanca</span><span class="ticker-dot">✦</span>
-        <span>Luxury</span><span class="ticker-dot">✦</span>
-        <span>Bourgogne</span><span class="ticker-dot">✦</span>
-        <span>Excellence</span><span class="ticker-dot">✦</span>
-        <span>Elegance</span><span class="ticker-dot">✦</span>
-        <span>Salon Reda</span><span class="ticker-dot">✦</span>
-        <span>Haute Coiffure</span><span class="ticker-dot">✦</span>
-        <span>Casablanca</span><span class="ticker-dot">✦</span>
-        <span>Luxury</span><span class="ticker-dot">✦</span>
-        <span>Bourgogne</span><span class="ticker-dot">✦</span>
-        <span>Excellence</span><span class="ticker-dot">✦</span>
-        <span>Elegance</span><span class="ticker-dot">✦</span>
-        <span>Salon Reda</span><span class="ticker-dot">✦</span>
-        <span>Haute Coiffure</span><span class="ticker-dot">✦</span>
+        <span>Casablanca</span><span class="ticker-dot">?</span>
+        <span>Luxury</span><span class="ticker-dot">?</span>
+        <span>Bourgogne</span><span class="ticker-dot">?</span>
+        <span>Excellence</span><span class="ticker-dot">?</span>
+        <span>Elegance</span><span class="ticker-dot">?</span>
+        <span>Salon Reda</span><span class="ticker-dot">?</span>
+        <span>Haute Coiffure</span><span class="ticker-dot">?</span>
+        <span>Casablanca</span><span class="ticker-dot">?</span>
+        <span>Luxury</span><span class="ticker-dot">?</span>
+        <span>Bourgogne</span><span class="ticker-dot">?</span>
+        <span>Excellence</span><span class="ticker-dot">?</span>
+        <span>Elegance</span><span class="ticker-dot">?</span>
+        <span>Salon Reda</span><span class="ticker-dot">?</span>
+        <span>Haute Coiffure</span><span class="ticker-dot">?</span>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════ HERO ═══════════ -->
+  <!-- ----------- HERO ----------- -->
   <section class="hero" id="hero">
     <div class="hero-bg"></div>
     <div class="hero-grain"></div>
@@ -294,14 +298,14 @@
       <div class="hero-line"></div>
     </div>
     <div class="hero-content">
-      <div class="hero-eyebrow reveal" data-i18n="hero_eyebrow">✦ Casablanca · Maroc ✦</div>
+      <div class="hero-eyebrow reveal" data-i18n="hero_eyebrow">? Casablanca · Maroc ?</div>
       <div class="hero-logo-big reveal">
         <div class="hero-script">Reda</div>
         <div class="hero-brand-sub">HAIRSTYLING &amp; BEAUTY PROFESSIONALS</div>
       </div>
       <p class="hero-desc reveal" data-i18n="hero_desc">Spécialiste Balayage, Ombré &amp; Coloration à Casablanca.<br>Une expérience capillaire d'exception, taillée sur mesure pour vous.</p>
       <div class="hero-cta-group reveal">
-        <!-- Book button → #contact calendar tab -->
+        <!-- Book button ? #contact calendar tab -->
         <a href="#contact" class="btn btn-primary book-trigger">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
           <span data-i18n="hero_cta1">Prendre RDV</span>
@@ -331,7 +335,7 @@
     </a>
   </section>
 
-  <!-- ═══════════ SERVICES ═══════════ -->
+  <!-- ----------- SERVICES ----------- -->
   <section class="section" id="services">
     <div class="container">
       <div class="section-header reveal">
@@ -417,7 +421,7 @@
     </div>
   </section>
 
-  <!-- ═══════════ GALLERY ═══════════ -->
+  <!-- ----------- GALLERY ----------- -->
   <section class="section section-alt" id="gallery">
     <div class="container">
       <div class="section-header reveal">
@@ -427,27 +431,27 @@
       </div>
       <div class="gallery-grid">
         <div class="gallery-item reveal g-tall">
-          <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=85&auto=format&fit=crop" alt="Balayage" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=85&auto=format&fit=crop&fm=webp" alt="Balayage" loading="lazy">
           <div class="gallery-overlay"><span>Balayage</span></div>
         </div>
         <div class="gallery-item reveal">
-          <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=600&q=85&auto=format&fit=crop" alt="Coloration" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=600&q=85&auto=format&fit=crop&fm=webp" alt="Coloration" loading="lazy">
           <div class="gallery-overlay"><span>Coloration</span></div>
         </div>
         <div class="gallery-item reveal">
-          <img src="https://images.unsplash.com/photo-1519735777090-ec97162dc266?w=600&q=85&auto=format&fit=crop" alt="Ombré" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1519735777090-ec97162dc266?w=600&q=85&auto=format&fit=crop&fm=webp" alt="Ombré" loading="lazy">
           <div class="gallery-overlay"><span>Ombré</span></div>
         </div>
         <div class="gallery-item reveal g-wide">
-          <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=900&q=85&auto=format&fit=crop" alt="Brushing" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=900&q=85&auto=format&fit=crop&fm=webp" alt="Brushing" loading="lazy">
           <div class="gallery-overlay"><span>Brushing &amp; Style</span></div>
         </div>
         <div class="gallery-item reveal">
-          <img src="https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?w=600&q=85&auto=format&fit=crop" alt="Soin" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?w=600&q=85&auto=format&fit=crop&fm=webp" alt="Soin" loading="lazy">
           <div class="gallery-overlay"><span>Soin Capillaire</span></div>
         </div>
         <div class="gallery-item reveal">
-          <img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=600&q=85&auto=format&fit=crop" alt="Coupe" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=600&q=85&auto=format&fit=crop&fm=webp" alt="Coupe" loading="lazy">
           <div class="gallery-overlay"><span>Coupe &amp; Finition</span></div>
         </div>
       </div>
@@ -460,13 +464,13 @@
     </div>
   </section>
 
-  <!-- ═══════════ ABOUT ═══════════ -->
+  <!-- ----------- ABOUT ----------- -->
   <section class="section" id="about">
     <div class="container">
       <div class="about-grid">
         <div class="about-img-col reveal">
           <div class="about-img-wrap">
-            <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=700&q=85&auto=format&fit=crop" alt="Salon Reda" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=700&q=85&auto=format&fit=crop&fm=webp" alt="Salon Reda" loading="lazy">
             <div class="about-img-badge">
               <div class="about-badge-val">23K</div>
               <div class="about-badge-lbl" data-i18n="badge_followers">Followers</div>
@@ -485,7 +489,7 @@
             <div class="about-feat"><div class="about-feat-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><span data-i18n="feat3">Conseil personnalisé gratuit</span></div>
             <div class="about-feat"><div class="about-feat-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><span data-i18n="feat4">Équipe formée aux dernières tendances</span></div>
           </div>
-          <!-- About CTA → also triggers calendar tab -->
+          <!-- About CTA ? also triggers calendar tab -->
           <a href="#contact" class="btn btn-primary book-trigger" style="margin-top:32px;display:inline-flex;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             <span data-i18n="about_cta">Prendre Rendez-Vous</span>
@@ -495,7 +499,7 @@
     </div>
   </section>
 
-  <!-- ═══════════ LOCATION / MAP ═══════════ -->
+  <!-- ----------- LOCATION / MAP ----------- -->
   <section class="section section-alt" id="location">
     <div class="container">
       <div class="section-header reveal">
@@ -552,7 +556,7 @@
     </div>
   </section>
 
-  <!-- ═══════════ GOOGLE REVIEWS ═══════════ -->
+  <!-- ----------- GOOGLE REVIEWS ----------- -->
   <section class="section section-alt" id="reviews">
     <div class="container">
 
@@ -663,7 +667,7 @@
     </div>
   </section>
 
-  <!-- ═══════════ CONTACT + BOOKING ═══════════ -->
+  <!-- ----------- CONTACT + BOOKING ----------- -->
   <section class="section" id="contact">
     <div class="container">
 
@@ -884,7 +888,7 @@
       <div class="footer-bottom">
         <span data-i18n="foot_copy">© 2025 Salon Reda. Tous droits réservés.</span>
         <a href="#" class="footer-privacy-link" onclick="showPrivacyPolicy(event)" data-i18n="foot_privacy">Politique de confidentialité</a>
-        <span>Casablanca, Maroc 🇲🇦</span>
+        <span>Casablanca, Maroc ????</span>
       </div>
     </div>
   </footer>
@@ -893,7 +897,7 @@
     <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
 
-  <!-- ══ BOOKING SUCCESS OVERLAY ══ -->
+  <!-- -- BOOKING SUCCESS OVERLAY -- -->
   <div id="bsOverlay" class="bso-overlay" style="display:none;" aria-hidden="true">
     <div class="bso-backdrop" onclick="closeBSO()"></div>
     <div class="bso-card" role="dialog" aria-modal="true">
@@ -938,7 +942,7 @@
     </div>
   </div>
 
-  <!-- ══ PRIVACY POLICY MODAL ══ -->
+  <!-- -- PRIVACY POLICY MODAL -- -->
   <div id="privacyModal" class="privacy-modal" style="display:none;" role="dialog" aria-modal="true" aria-label="Politique de confidentialité">
     <div class="privacy-backdrop" onclick="closePrivacyPolicy()"></div>
     <div class="privacy-card">
@@ -958,7 +962,7 @@
     </div>
   </div>
 
-  <!-- ══ COOKIE CONSENT BANNER ══ -->
+  <!-- -- COOKIE CONSENT BANNER -- -->
   <div id="cookieBanner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Consentement cookies" style="display:none;">
     <div class="cookie-inner">
       <div class="cookie-text">
